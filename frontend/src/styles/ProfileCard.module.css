@@ -1,0 +1,100 @@
+.profileContainer {
+    padding-top: 2rem;
+    text-align: left;
+}
+
+.profileCard {
+    background-color: var(--black);
+    box-shadow: var(--shadow-out);
+    border: var(--border);
+    border-radius: 20px;
+    min-width: 300px;
+    max-width: 340px;
+    padding-bottom: 1rem;
+}
+
+.profileCard hr {
+    border: none;
+    border-left: 0.5px solid var(--medium-gray);
+    margin: 0 1rem;
+    min-height: 2rem;
+    width: 0.5px;
+}
+
+.profileBg {
+    height: 100px;
+    position: relative;
+}
+
+.profileImg {
+    background-color: var(--black);
+    border: var(--border);
+    border-radius: 10px;
+    box-shadow: var(--shadow-in);
+    width: 132px;
+    height: 132px;
+    padding: 16px;
+    object-fit: contain;
+    position: absolute;
+    top: -2rem;
+    left: 2rem;
+}
+
+.profileImg img {
+    border-radius: 10px;
+}
+
+.profileInfo {
+    padding: 1rem 2rem;
+}
+
+.profileName {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0.5rem 0;
+}
+
+.profileDetails {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.profileHandle {
+    font-size: 1rem;
+    color: var(--medium-gray);
+}
+
+.profileAddress {
+    font-size: 0.9rem;
+    color: var(--green);
+}
+
+.profileBio {
+    font-size: 1rem;
+    color: var(--medium-gray);
+    margin-bottom: 1rem;
+}
+
+.profileSocial {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+}
+
+.profileFollowers,
+.profileFollowing {
+    color: var(--medium-gray);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profileFollowers div:first-child,
+.profileFollowing div:first-child {
+    color: var(--white);
+    font-size: 1.2rem;
+}

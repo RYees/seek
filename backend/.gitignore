@@ -1,0 +1,7 @@
+/.env
+bin
+tmp
+vendor
+.idea
+/.DS_Store
+ent/.DS_Store

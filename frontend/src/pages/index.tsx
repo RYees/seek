@@ -5,7 +5,7 @@ import styles from "@/styles/Home.module.css";
 import { useContext } from "react";
 import { AuthContext } from "@/context/auth";
 import Navbar from "@/components/Navbar";
-import ProfileCard from "@/components/ProfileCard";
+import ProfileCard from "@/components/Cards/ProfileCard";
 import SearchBar from "@/components/SearchBar";
 import { IProfileCard } from "@/types";
 
@@ -18,43 +18,21 @@ export default function Home() {
   const dummyData = [
     {
       id: 1,
-      address: "0x1234567890",
+      address: "0xd9f8bdff66e451de",
       name: "Snowdot",
-      handle: "@snowdot",
-      bio: "Frontend developer with a dream",
-      followers: 0,
-      following: 0,
-      image: "https://picsum.photos/200/300",
+      description: "Frontend developer with a dream",
+      followers: [],
+      following: [],
+      avatar: "https://picsum.photos/200/300",
     },
     {
       id: 2,
-      address: "0x1234567890",
+      address: "0xdec5369b36230285",
       name: "Samer",
-      handle: "@samer",
-      bio: "Backend developer & devops",
-      followers: 102,
-      following: 1569,
-      image: "https://picsum.photos/200/301",
-    },
-    {
-      id: 3,
-      address: "0x1234567890",
-      name: "Satoshi",
-      handle: "@satoshinakamoto",
-      bio: "The creator of Bitcoin",
-      followers: 0,
-      following: 0,
-      image: "https://picsum.photos/200/302",
-    },
-    {
-      id: 4,
-      address: "0x1234567890",
-      name: "Vitalik",
-      handle: "@vitalikbuterin",
-      bio: "The creator of Ethereum",
-      followers: 14698,
-      following: 23,
-      image: "https://picsum.photos/200/303",
+      description: "Backend developer & devops",
+      followers: [null, null],
+      following: [null, null],
+      avatar: "https://picsum.photos/200/301",
     },
   ];
 
@@ -82,6 +60,7 @@ export default function Home() {
         <br></br>
         <div className={styles.profiles}>
           {
+            dummyData.length > 0 &&
             dummyData.map((profile: IProfileCard) => (
               <ProfileCard
                 key={profile.id}

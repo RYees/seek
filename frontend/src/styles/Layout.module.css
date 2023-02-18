@@ -1,0 +1,52 @@
+.layoutWrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 1rem 1rem 6rem;
+}
+
+.layoutTop {
+    display: none;
+}
+
+.layoutMid {
+    padding-top: 2rem;
+}
+
+.layoutBot {
+    display: none;
+}
+
+@media (min-width: 798px) {
+    .layoutWrapper {
+        grid-template-columns: minmax(300px, 340px) 2fr;
+        grid-gap: 1rem;
+    }
+
+    .layoutTop {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .layoutMid {}
+
+    .layoutBot {}
+}
+
+@media (min-width: 1120px) {
+    .layoutWrapper {
+        grid-template-columns: minmax(300px, 320px) 2fr minmax(300px, 340px);
+        grid-gap: 2rem;
+    }
+
+    .layoutTop {
+        display: block;
+    }
+
+    .layoutMid {}
+
+    .layoutBot {
+        display: block;
+    }
+}

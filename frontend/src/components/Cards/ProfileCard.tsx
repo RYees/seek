@@ -1,16 +1,16 @@
 import styles from "@/styles/ProfileCard.module.css";
+import Link from "next/link";
 import Image from "next/image";
 import { IProfileCard } from "@/types";
-import { intlCompactNumFormat } from "@/hepers/functions";
+import { intlCompactNumFormat, parseURL } from "@/helpers/functions";
 
 export default function ProfileCard({
     address,
     name,
-    handle,
-    bio,
+    description,
     followers,
     following,
-    image,
+    avatar,
 }: IProfileCard) {
 
     return (
@@ -18,35 +18,35 @@ export default function ProfileCard({
             <div className={styles.profileCard}>
                 <div className={styles.profileBg}>
                     <div className={styles.profileImg}>
-                        <Image
-                            src={image}
-                            alt="avatar"
-                            width={100}
-                            height={100}
-                        />
+                        {
+                            avatar ?
+                                <Image
+                                    src={parseURL(avatar)}
+                                    alt="avatar"
+                                    width={100}
+                                    height={100}
+                                />
+                                : <div className={styles.profileImgPlaceholder}></div>
+                        }
                     </div>
                 </div>
                 <div className={styles.profileInfo}>
                     <div className={styles.profileName}>{name}</div>
                     <div className={styles.profileDetails}>
-                        <div className={styles.profileHandle}>{handle}</div>
-                        <a className={styles.profileAddress}
-                            href={`https://testnet.flowscan.org/address/${address}`}
-                            target="_blank"
-                            rel="noreferrer"
-                            aria-label="Flowscan"
-                        >{`${address.slice(0, 4)}...${address.slice(-4)}`}</a>
+                        <Link href={`/${address}`}>
+                            <div>{address}</div>
+                        </Link>
                     </div>
-                    <div className={styles.profileBio}>{bio}</div>
+                    <div className={styles.profileBio}>{description}</div>
                 </div>
                 <div className={styles.profileSocial}>
                     <div className={styles.profileFollowers}>
-                        <div>{intlCompactNumFormat(followers)}</div>
+                        <div>{intlCompactNumFormat(followers.length)}</div>
                         <div>Followers</div>
                     </div>
                     <hr></hr>
                     <div className={styles.profileFollowing}>
-                        <div>{intlCompactNumFormat(following)}</div>
+                        <div>{intlCompactNumFormat(following.length)}</div>
                         <div>Following</div>
                     </div>
                 </div>

@@ -1,0 +1,64 @@
+.recommendsContainer {
+    text-align: left;
+}
+
+.recommendsCard {
+    background-color: var(--black);
+    box-shadow: var(--shadow-out);
+    border: var(--border);
+    border-radius: 20px;
+    min-width: 300px;
+    margin-top: 2rem;
+    padding: 1rem;
+}
+
+.recommendsCard p {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.recommendsCardProfile {
+    display: grid;
+    grid-template-columns: 56px 1fr 100px;
+    align-items: center;
+    grid-gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.recommendsCardProfileImg {
+    background-color: var(--black);
+    border: var(--border);
+    border-radius: 4px;
+    box-shadow: var(--shadow-in);
+    width: 56px;
+    height: 56px;
+    padding: 8px;
+}
+
+.recommendsCardProfileImg img {
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.recommendsCardProfileName {
+    font-size: 1.1rem;
+}
+
+.recommendsCardProfileHandle {
+    font-size: 1rem;
+    color: var(--medium-gray);
+}
+
+.recommendsCardProfileInfo a {
+    font-size: 0.8rem;
+    color: var(--green);
+}
+
+.recommendsCardImgPlaceholder {
+    background: var(--gradient-bg);
+    border-radius: 4px;
+    min-width: 40px;
+    min-height: 40px;
+}

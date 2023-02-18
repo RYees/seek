@@ -34,7 +34,6 @@
     width: 132px;
     height: 132px;
     padding: 16px;
-    object-fit: contain;
     position: absolute;
     top: -2rem;
     left: 2rem;
@@ -42,6 +41,14 @@
 
 .profileImg img {
     border-radius: 10px;
+    object-fit: cover;
+}
+
+.profileImgPlaceholder {
+    background: var(--gradient-bg);
+    border-radius: 10px;
+    min-width: 100px;
+    min-height: 100px;
 }
 
 .profileInfo {
@@ -66,8 +73,8 @@
     color: var(--medium-gray);
 }
 
-.profileAddress {
-    font-size: 0.9rem;
+.profileDetails a {
+    font-size: 1rem;
     color: var(--green);
 }
 

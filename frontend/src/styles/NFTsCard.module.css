@@ -1,0 +1,51 @@
+.nftsCard {
+    background-color: var(--black);
+    box-shadow: var(--shadow-out);
+    border: var(--border);
+    border-radius: 20px;
+    min-width: 300px;
+    max-width: 340px;
+    margin-top: 2rem;
+    padding: 1rem 1rem 2rem;
+}
+
+.nftsCardHead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.nftsCardHead a {
+    color: var(--blue);
+}
+
+.nftsCardHead p {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.nftsCardBody {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(76px, 1fr));
+    grid-gap: 1rem;
+}
+
+.nftsCardImg {
+    background-color: var(--black);
+    border: var(--border);
+    border-radius: 4px;
+    box-shadow: var(--shadow-in);
+    width: 76px;
+    height: 76px;
+    padding: 8px;
+}
+
+.nftsCardBody img {
+    border-radius: 4px;
+}
+
+.nftsCardBody p {
+    color: var(--medium-gray);
+    font-size: 1rem;
+}

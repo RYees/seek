@@ -1,6 +1,7 @@
 package indexer
 
 import (
+	"context"
 	"fmt"
 	"time"
 
@@ -35,5 +36,9 @@ func (indexer *Indexer) Start() {
 		}
 	}()
 	zap.L().Info("Rubik engine indexer started")
+
+	// Start Cron Jobs for fetching data
+	go indexer.service.SyncProfilesCreatedCron(context.Background())
+	go indexer.service.SyncOldProfilesCreatedCron(context.Background())
 
 }

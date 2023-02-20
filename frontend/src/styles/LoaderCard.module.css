@@ -1,0 +1,32 @@
+.loaderCard {
+    display: inline-block;
+}
+
+.loaderCardLoading,
+.loaderCardDefault,
+.loaderCardCompleted,
+.loaderCardError {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.loaderCardLoading svg,
+.loaderCardDefault svg,
+.loaderCardCompleted svg,
+.loaderCardError svg {
+    width: 26px;
+    height: 26px;
+}
+
+.loaderCardDefault {
+    color: var(--medium-gray);
+}
+
+.loaderCardCompleted {
+    color: var(--green);
+}
+
+.loaderCardError {
+    color: var(--red);
+}

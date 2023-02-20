@@ -40,5 +40,6 @@ func (indexer *Indexer) Start() {
 	// Start Cron Jobs for fetching data
 	go indexer.service.SyncProfilesCreatedCron(context.Background())
 	go indexer.service.SyncOldProfilesCreatedCron(context.Background())
+	go indexer.service.SyncFollowsCron(context.Background())
 
 }

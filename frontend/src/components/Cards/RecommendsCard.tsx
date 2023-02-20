@@ -32,10 +32,14 @@ export default function RecommendsCard(
                             <div className={styles.recommendsCardProfileInfo}>
                                 <div className={styles.recommendsCardProfileName}>{profile.name}</div>
                                 <Link href={`/${profile.address}`}>
-                                    <div>{`${profile.address.slice(0, 6)}...${profile.address.slice(-6)}`}</div>
+                                    <div>{
+                                        profile.findName ?
+                                            `${String(profile.findName + ".find")}`
+                                            : `${profile.address.slice(0, 6)}...${profile.address.slice(-6)}`
+                                    }</div>
                                 </Link>
                             </div>
-                            <FollowBtn />
+                            <FollowBtn address={profile.address} />
                         </div>
                     ))
                 }

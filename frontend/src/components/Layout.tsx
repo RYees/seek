@@ -18,7 +18,13 @@ export default function Layout(
     { account }: { account: string | undefined | string[] }
 ) {
     // TODO: get recommends from backend
-    const [recommendList, setRecommendList] = useState<string[]>(["0xdec5369b36230285", "0x886f3aeaf848c535", "0x92ba5cba77fc1e87", "0x3f09321b132509d1", "0xd9f8bdff66e451de"]);
+    const [recommendList, setRecommendList] = useState<string[]>([
+        "0xdec5369b36230285",
+        "0x886f3aeaf848c535",
+        "0x92ba5cba77fc1e87",
+        "0x3f09321b132509d1",
+        "0xd9f8bdff66e451de"
+    ]);
 
     // State variables
     const [profile, setProfile] = useState<IProfileCard | null>(null);
@@ -26,7 +32,7 @@ export default function Layout(
     const [nftList, setNFTList] = useState<INftList[]>([]);
     const [nfts, setNfts] = useState<INFTCard[]>([]);
 
-    // Get profile of the current user
+    // Get profile of the account
     useEffect(() => {
         setProfile(null);
 
@@ -52,6 +58,7 @@ export default function Layout(
     useEffect(() => {
         setRecommended([]);
 
+        if (!profile) return;
         if (recommendList.length === 0) return;
 
         async function getProfiles() {
@@ -75,13 +82,14 @@ export default function Layout(
         }
 
         getProfiles();
-    }, [recommendList]);
+    }, [profile, recommendList]);
 
     // Get NFT list for the account
     useEffect(() => {
         setNFTList([]);
 
         if (!account) return;
+        if (!profile) return;
 
         async function fetchNftList() {
             try {
@@ -92,7 +100,6 @@ export default function Layout(
                         arg([], types.Array(types.String)),
                     ],
                 });
-                console.log(res);
                 const nfts = orderNFTs(res, account as string);
                 setNFTList(nfts);
             } catch (err) {
@@ -100,13 +107,14 @@ export default function Layout(
             }
         }
         fetchNftList();
-    }, [account]);
+    }, [profile, account]);
 
     // Get details for all NFTs in the list
     useEffect(() => {
         setNfts([]);
 
         if (nftList.length === 0) return;
+        if (!profile) return;
 
         async function fetchNftDetails() {
             const promises: any[] = [];
@@ -138,7 +146,7 @@ export default function Layout(
             }
         }
         fetchNftDetails();
-    }, [nftList]);
+    }, [profile, nftList]);
 
     return (
         <div className={styles.layout}>
@@ -146,15 +154,29 @@ export default function Layout(
                 <div className={styles.layoutTop}>
                     {
                         profile &&
-                        <ProfileCard {...profile} />
+                        <>
+                            <ProfileCard {...profile} />
+                            <NFTsCard nfts={nfts} />
+                        </>
                     }
-                    <NFTsCard nfts={nfts} />
                 </div>
                 <div className={styles.layoutMid}>
-                    <PostCard />
+                    {
+                        profile &&
+                        <>
+                            <PostCard />
+                        </>
+                    }
+                    {
+                        !profile &&
+                        <div className={styles.layoutMessage}>
+                            <p>User didnt create a profile yet.</p>
+                        </div>
+                    }
                 </div>
                 <div className={styles.layoutBot}>
                     {
+                        profile &&
                         recommended.length > 0 &&
                         <RecommendsCard recommended={recommended} />
                     }

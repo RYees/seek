@@ -1,3 +1,56 @@
+export const FLOW_FIND_CONTRACTS: any = {
+    testnet: {
+        FIND: "0x35717efbbce11c74",
+        Profile: "0x35717efbbce11c74",
+        FungibleToken: "0x9a0766d93b6608b7",
+        NonFungibleToken: "0x631e88ae7f1d7c20",
+        MetadataViews: "0x631e88ae7f1d7c20",
+        Dandy: "0x35717efbbce11c74",
+        FindMarket: "0x35717efbbce11c74",
+        FindMarketDirectOfferSoft: "0x35717efbbce11c74",
+        FindMarketDirectOfferEscrow: "0x35717efbbce11c74",
+        DapperUtilityCoin: "0x82ec283f88a62e65",
+        FlowUtilityToken: "0x82ec283f88a62e65",
+        FindLeaseMarketDirectOfferSoft: "0x35717efbbce11c74",
+        FindLeaseMarket: "0x35717efbbce11c74",
+        FINDNFTCatalog: "0x35717efbbce11c74",
+        FindViews: "0x35717efbbce11c74",
+        FindUtils: "0x35717efbbce11c74",
+        FTRegistry: "0x35717efbbce11c74",
+        FindUserStatus: "0x35717efbbce11c74",
+        FUSD: "0xe223d8a629e49c68",
+        FlowToken: "0x7e60df042a9c0868",
+        FiatToken: "0xa983fecbed621163",
+        FindThoughts: "0x35717efbbce11c74",
+        FindPack: "0x35717efbbce11c74",
+    },
+    mainnet: {
+        FIND: "0x097bafa4e0b48eef",
+        Profile: "0x097bafa4e0b48eef",
+        FungibleToken: "0xf233dcee88fe0abe",
+        NonFungibleToken: "0x1d7e57aa55817448",
+        MetadataViews: "0x1d7e57aa55817448",
+        Dandy: "0x097bafa4e0b48eef",
+        FindMarket: "0x097bafa4e0b48eef",
+        FindMarketDirectOfferEscrow: "0x097bafa4e0b48eef",
+        FindMarketDirectOfferSoft: "0x097bafa4e0b48eef",
+        DapperUtilityCoin: "0xead892083b3e2c6c",
+        FlowUtilityToken: "0xead892083b3e2c6c",
+        FindLeaseMarketDirectOfferSoft: "0x097bafa4e0b48eef",
+        FindLeaseMarket: "0x097bafa4e0b48eef",
+        FINDNFTCatalog: "0x097bafa4e0b48eef",
+        FindViews: "0x097bafa4e0b48eef",
+        FindUtils: "0x097bafa4e0b48eef",
+        FTRegistry: "0x097bafa4e0b48eef",
+        FindUserStatus: "0x097bafa4e0b48eef",
+        FUSD: "0x3c5959b568896393",
+        FlowToken: "0x1654653399040a61",
+        FiatToken: "0xb19436aae4d94622",
+        FindThoughts: "0x097bafa4e0b48eef",
+        FindPack: "0x097bafa4e0b48eef",
+    },
+};
+
 export const MAX_NUM_OF_NFT = 9;
 
 export const PRIORITY_NFT_COLLECTIONS = [
@@ -5,3 +58,5 @@ export const PRIORITY_NFT_COLLECTIONS = [
     "PartyMansionDrinksContract",
     "GoatedGoats",
 ];
+
+export const IFPS_GATEWAY = "https://cf-ipfs.com/ipfs";

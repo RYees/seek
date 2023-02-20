@@ -18,6 +18,11 @@
     display: none;
 }
 
+.layoutMessage {
+    color: var(--medium-gray);
+    font-size: 1rem;
+}
+
 @media (min-width: 798px) {
     .layoutWrapper {
         grid-template-columns: minmax(300px, 340px) 2fr;
@@ -28,10 +33,6 @@
         display: flex;
         flex-direction: column;
     }
-
-    .layoutMid {}
-
-    .layoutBot {}
 }
 
 @media (min-width: 1120px) {
@@ -43,8 +44,6 @@
     .layoutTop {
         display: block;
     }
-
-    .layoutMid {}
 
     .layoutBot {
         display: block;

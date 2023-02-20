@@ -3,16 +3,17 @@ module github.com/SamixDev/seek
 go 1.19
 
 require (
+	github.com/bjartek/overflow v1.1.3
 	github.com/spf13/viper v1.15.0
 	gorm.io/gorm v1.24.2
 )
 
 require (
-	cloud.google.com/go v0.105.0 // indirect
 	cloud.google.com/go/compute v1.14.0 // indirect
 	cloud.google.com/go/compute/metadata v0.2.3 // indirect
 	cloud.google.com/go/iam v0.8.0 // indirect
 	cloud.google.com/go/kms v1.6.0 // indirect
+	cloud.google.com/go/storage v1.27.0 // indirect
 	github.com/FactomProject/basen v0.0.0-20150613233007-fe3947df716e // indirect
 	github.com/FactomProject/btcutilecc v0.0.0-20130527213604-d3a63a5752ec // indirect
 	github.com/Microsoft/go-winio v0.4.16 // indirect
@@ -21,7 +22,6 @@ require (
 	github.com/acomagu/bufpipe v1.0.3 // indirect
 	github.com/araddon/dateparse v0.0.0-20210429162001-6b43995a97de // indirect
 	github.com/bits-and-blooms/bitset v1.3.0 // indirect
-	github.com/bjartek/overflow v1.1.3 // indirect
 	github.com/btcsuite/btcd v0.22.1 // indirect
 	github.com/btcsuite/btcd/btcec/v2 v2.2.0 // indirect
 	github.com/cenkalti/backoff/v4 v4.1.3 // indirect
@@ -46,6 +46,7 @@ require (
 	github.com/go-git/go-git/v5 v5.4.2 // indirect
 	github.com/go-logr/logr v1.2.3 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
+	github.com/go-sql-driver/mysql v1.7.0 // indirect
 	github.com/go-test/deep v1.0.8 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
@@ -176,6 +177,7 @@ require (
 	google.golang.org/grpc v1.52.0 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
+	gorm.io/driver/mysql v1.4.4 // indirect
 	lukechampine.com/blake3 v1.1.7 // indirect
 	mvdan.cc/gofumpt v0.4.0 // indirect
 )
@@ -196,5 +198,6 @@ require (
 	golang.org/x/text v0.6.0 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
+	gorm.io/datatypes v1.1.0
 	gorm.io/driver/postgres v1.4.7
 )

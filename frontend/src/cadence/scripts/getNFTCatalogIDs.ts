@@ -1,7 +1,11 @@
+import { FLOW_FIND_CONTRACTS } from "@/helpers/constants";
+
+const network = process.env.NEXT_PUBLIC_FLOW_NETWORK || "testnet";
+
 export const getNFTCatalogIDs = `
-    import MetadataViews from 0x1d7e57aa55817448;
-    import FIND from 0x097bafa4e0b48eef;
-    import FINDNFTCatalog from 0x097bafa4e0b48eef;
+    import MetadataViews from ${FLOW_FIND_CONTRACTS[network].MetadataViews};
+    import FIND from ${FLOW_FIND_CONTRACTS[network].FIND};
+    import FINDNFTCatalog from ${FLOW_FIND_CONTRACTS[network].FINDNFTCatalog};
 
     pub fun main(user: String, collections: [String]) : {String : ItemReport} {
         return fetchNFTCatalog(user: user, targetCollections:collections)

@@ -25,7 +25,7 @@
 
 @media (min-width: 798px) {
     .layoutWrapper {
-        grid-template-columns: minmax(300px, 340px) 2fr;
+        grid-template-columns: auto 2fr;
         grid-gap: 1rem;
     }
 
@@ -37,7 +37,7 @@
 
 @media (min-width: 1120px) {
     .layoutWrapper {
-        grid-template-columns: minmax(300px, 320px) 2fr minmax(300px, 340px);
+        grid-template-columns: minmax(300px, 320px) 2fr minmax(300px, 320px);
         grid-gap: 2rem;
     }
 

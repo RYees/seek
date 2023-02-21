@@ -2,16 +2,16 @@ export interface IAuthContext {
     user: IUser | null;
     hasProfile: boolean | null;
     userProfile: IUserProfile | null;
-    createProfileStatus: ICreateProfileStatus;
-    createProfileTXs: ICreateProfileTXs;
+    profileTxStatus: IProfileTxStatus;
+    profileTxTracker: IProfileTxTracker;
     login: () => void;
     logout: () => void;
     follow: (address: string) => void;
     unfollow: (address: string) => void;
     create: (name: string) => void;
     edit: (name: string, description: string, avatar: string) => void;
-    setCreateProfileStatus: (status: ICreateProfileStatus) => void;
-    setCreateProfileTXs: (tx: ICreateProfileTXs) => void;
+    setProfileTxStatus: (status: IProfileTxStatus) => void;
+    setProfileTxTracker: (tx: IProfileTxTracker) => void;
 }
 
 export interface IProfileCard {
@@ -63,18 +63,23 @@ export interface ILoaderCard {
     error: string;
 }
 
-export interface ICreateProfileStatus {
-    name: {
+export interface ILoadingCard {
+    loading: boolean;
+    error: string;
+}
+
+export interface IProfileTxStatus {
+    create: {
         status: string;
         error: string;
     };
-    info: {
+    edit: {
         status: string;
         error: string;
     };
 }
 
-export interface ICreateProfileTXs {
-    name: string;
-    info: string;
+export interface IProfileTxTracker {
+    create: string;
+    edit: string;
 }

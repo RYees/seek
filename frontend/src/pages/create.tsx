@@ -1,11 +1,9 @@
-import { useState } from "react";
 import Head from "next/head";
 import styles from "@/styles/Create.module.css";
 import Navbar from "@/components/Navbar";
 import CreateProfileForm from "@/components/Forms/CreateProfileForm";
 
 export default function Create() {
-
     return (
         <>
             <Head>
@@ -26,5 +24,5 @@ export default function Create() {
                 </div>
             </main>
         </>
-    )
+    );
 }

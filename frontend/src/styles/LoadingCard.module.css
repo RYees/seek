@@ -1,0 +1,10 @@
+.loadingCardLoading div {
+    color: var(--light-gray);
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+}
+
+.loadingCardError {
+    color: var(--red);
+    font-size: 1.2rem;
+}

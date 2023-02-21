@@ -4,7 +4,8 @@ import ProfileCard from "./Cards/ProfileCard";
 import NFTsCard from "./Cards/NTFsCard";
 import RecommendsCard from "./Cards/RecommendsCard";
 import PostCard from "./Cards/PostCard";
-import { INFTCard, IProfileCard, INftList } from "@/types";
+import LoadingCard from "./Cards/LoadingCard";
+import { INFTCard, IProfileCard, INftList, ILoadingCard } from "@/types";
 import { orderNFTs, parseURL } from "@/helpers/functions";
 // @ts-ignore
 import * as fcl from "@onflow/fcl";
@@ -15,7 +16,15 @@ import { getNFTCatalogIDs } from "@/cadence/scripts/getNFTCatalogIDs";
 import { getNFTDetailsNFTCatalog } from "@/cadence/scripts/getNFTDetailsNFTCatalog";
 
 export default function Layout(
-    { account }: { account: string | undefined | string[] }
+    {
+        account,
+        state,
+        setState
+    }: {
+        account: string | undefined | string[],
+        state: { loading: boolean, error: string },
+        setState: (state: ILoadingCard) => void
+    }
 ) {
     // TODO: get recommends from backend
     const [recommendList, setRecommendList] = useState<string[]>([
@@ -34,6 +43,7 @@ export default function Layout(
 
     // Get profile of the account
     useEffect(() => {
+        setState({ loading: true, error: "" });
         setProfile(null);
 
         if (!account) return;
@@ -46,9 +56,18 @@ export default function Layout(
                         arg(account, types.Address),
                     ],
                 });
+                // Update state variables
                 setProfile(res);
+                setState({
+                    loading: false,
+                    error: ""
+                });
             } catch (err) {
                 console.error(err);
+                setState({
+                    loading: false,
+                    error: "Error: Something went wrong. Please try again."
+                });
             }
         }
         fetchProfile();
@@ -162,16 +181,21 @@ export default function Layout(
                 </div>
                 <div className={styles.layoutMid}>
                     {
-                        profile &&
-                        <>
-                            <PostCard />
-                        </>
-                    }
-                    {
-                        !profile &&
-                        <div className={styles.layoutMessage}>
-                            <p>User didnt create a profile yet.</p>
-                        </div>
+                        (state.loading || state.error)
+                            ? <LoadingCard
+                                loading={state.loading}
+                                error={state.error}
+                            />
+                            : (
+                                profile
+                                    ? <div>
+                                        <PostCard />
+                                        <div>TODO: Post will be here</div>
+                                    </div>
+                                    : <div className={styles.layoutMessage}>
+                                        <p>User doesn&apos;t have a profile yet.</p>
+                                    </div>
+                            )
                     }
                 </div>
                 <div className={styles.layoutBot}>

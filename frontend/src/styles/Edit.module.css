@@ -1,0 +1,36 @@
+.editLayout {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 1rem 1rem 6rem;
+    text-align: left;
+}
+
+.editLayoutTop {
+    display: none;
+}
+
+.editLayoutBot {
+    display: none;
+}
+
+.editLayout p {
+    color: var(--medium-gray);
+    font-weight: 300;
+}
+
+@media (min-width: 1120px) {
+    .editLayout {
+        grid-template-columns: 200px 2fr 200px;
+        grid-gap: 2rem;
+    }
+
+    .editLayoutTop {
+        display: block;
+    }
+
+    .editLayoutBot {
+        display: block;
+    }
+}

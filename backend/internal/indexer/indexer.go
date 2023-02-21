@@ -41,5 +41,5 @@ func (indexer *Indexer) Start() {
 	go indexer.service.SyncProfilesCreatedCron(context.Background())
 	go indexer.service.SyncOldProfilesCreatedCron(context.Background())
 	go indexer.service.SyncFollowsCron(context.Background())
-
+	go indexer.service.SyncThoughtsPublishedCron(context.Background())
 }

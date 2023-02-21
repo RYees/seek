@@ -12,8 +12,8 @@ import {
     IAuthContext,
     IUser,
     IUserProfile,
-    ICreateProfileStatus,
-    ICreateProfileTXs
+    IProfileTxStatus,
+    IProfileTxTracker
 } from "@/types";
 import { reverseLookup } from "@/cadence/scripts/reverseLookup";
 import { getProfile } from "@/cadence/scripts/getProfile";
@@ -34,19 +34,19 @@ export const AuthContext = createContext<IAuthContext>({
     user: null,
     hasProfile: false,
     userProfile: null,
-    createProfileStatus: {
-        name: {
+    profileTxStatus: {
+        create: {
             status: "INIT",
             error: "",
         },
-        info: {
+        edit: {
             status: "INIT",
             error: "",
-        }
+        },
     },
-    createProfileTXs: {
-        name: "",
-        info: ""
+    profileTxTracker: {
+        create: "",
+        edit: ""
     },
     login: async () => { },
     logout: async () => { },
@@ -54,8 +54,8 @@ export const AuthContext = createContext<IAuthContext>({
     unfollow: async () => { },
     create: async () => { },
     edit: async () => { },
-    setCreateProfileStatus: () => { },
-    setCreateProfileTXs: () => { },
+    setProfileTxStatus: () => { },
+    setProfileTxTracker: () => { },
 });
 
 AuthContext.displayName = "AuthContext";
@@ -64,56 +64,55 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser] = useState<IUser | null>(null);
     const [hasProfile, setHasProfile] = useState<boolean | null>(null);
     const [userProfile, setUserProfile] = useState<IUserProfile | null>(null);
-    const [createProfileStatus, setCreateProfileStatus] = useState<ICreateProfileStatus>({
-        name: {
+    const [profileTxStatus, setProfileTxStatus] = useState<IProfileTxStatus>({
+        create: {
             status: "INIT",
             error: "",
         },
-        info: {
+        edit: {
             status: "INIT",
             error: "",
-        }
+        },
     });
-    const [createProfileTXs, setCreateProfileTXs] = useState<ICreateProfileTXs>({
-        name: "",
-        info: ""
+    const [profileTxTracker, setProfileTxTracker] = useState<IProfileTxTracker>({
+        create: "",
+        edit: "",
     });
+    const [followTxTracker, setFollowTxTracker] = useState<string[]>([]);
     const [trigger, setTrigger] = useState<string>("");
 
-    // Event listener for user changes
+    // Event listener: user changes
     useEffect(() => {
         fcl.currentUser().subscribe(setUser);
-        console.log("From fcl");
-        console.log(user);
     }, []);
 
-    // Event listener for transaction updates
+    // Event listeners: create/edit profile transactions
     useEffect(() => {
-        const keys = Object.keys(createProfileTXs);
+        const keys = Object.keys(profileTxTracker);
 
         keys.forEach((key: string) => {
-            const keyName = key as keyof typeof createProfileTXs;
-            const tx = createProfileTXs[keyName];
+            const keyName = key as keyof typeof profileTxTracker;
+            const tx = profileTxTracker[keyName];
 
             if (!tx) return;
-            fcl.tx(createProfileTXs[keyName]).subscribe((res: any) => {
+            fcl.tx(profileTxTracker[keyName]).subscribe((res: any) => {
                 if (res.statusCode === 0) {
                     if (
                         res.statusString === "PENDING"
                         || res.statusString === ""
                         || res.statusString === "EXECUTED") {
-                        setCreateProfileStatus({
-                            ...createProfileStatus,
+                        setProfileTxStatus({
+                            ...profileTxStatus,
                             [keyName]: {
-                                ...createProfileStatus[keyName],
+                                ...profileTxStatus[keyName],
                                 status: "LOADING",
                             }
                         });
                     } else {
-                        setCreateProfileStatus({
-                            ...createProfileStatus,
+                        setProfileTxStatus({
+                            ...profileTxStatus,
                             [keyName]: {
-                                ...createProfileStatus[keyName],
+                                ...profileTxStatus[keyName],
                                 status: "COMPLETED",
                             }
                         });
@@ -122,10 +121,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                         setTrigger(String(Date.now()));
                     }
                 } else {
-                    setCreateProfileStatus({
-                        ...createProfileStatus,
+                    setProfileTxStatus({
+                        ...profileTxStatus,
                         [keyName]: {
-                            ...createProfileStatus[keyName],
+                            ...profileTxStatus[keyName],
                             status: "ERROR",
                         }
                     });
@@ -135,7 +134,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 }
             });
         });
-    }, [createProfileTXs]);
+    }, [profileTxTracker]);
 
     // Get user profile
     useEffect(() => {
@@ -158,10 +157,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
                 // Update create profile status
                 if (res.name) {
-                    setCreateProfileStatus({
-                        ...createProfileStatus,
-                        name: {
-                            ...createProfileStatus.name,
+                    setProfileTxStatus({
+                        ...profileTxStatus,
+                        create: {
+                            ...profileTxStatus.create,
                             status: "COMPLETED",
                         }
                     });
@@ -193,10 +192,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
                 // Update create profile status
                 if (res.name) {
-                    setCreateProfileStatus({
-                        ...createProfileStatus,
-                        name: {
-                            ...createProfileStatus.name,
+                    setProfileTxStatus({
+                        ...profileTxStatus,
+                        create: {
+                            ...profileTxStatus.create,
                             status: "COMPLETED",
                         }
                     });
@@ -205,6 +204,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 console.error(err);
             }
         }
+
         fetchProfile();
     }, [trigger, user]);
 
@@ -243,19 +243,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setUser(null);
         setHasProfile(null);
         setUserProfile(null);
-        setCreateProfileStatus({
-            name: {
+        setProfileTxStatus({
+            create: {
                 status: "INIT",
                 error: "",
             },
-            info: {
+            edit: {
                 status: "INIT",
                 error: "",
             }
         });
-        setCreateProfileTXs({
-            name: "",
-            info: ""
+        setProfileTxTracker({
+            create: "",
+            edit: ""
         });
     };
 
@@ -318,9 +318,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             });
 
             // Trigger the event listener
-            setCreateProfileTXs({
-                ...createProfileTXs,
-                name: transactionID
+            setProfileTxTracker({
+                ...profileTxTracker,
+                create: transactionID
             });
         } catch (error) {
             console.error(error);
@@ -354,9 +354,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             });
 
             // Trigger the event listener
-            setCreateProfileTXs({
-                ...createProfileTXs,
-                info: transactionID
+            setProfileTxTracker({
+                ...profileTxTracker,
+                edit: transactionID
             });
         } catch (error) {
             console.error(error);
@@ -368,16 +368,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             user,
             hasProfile,
             userProfile,
-            createProfileStatus,
-            createProfileTXs,
+            profileTxStatus,
+            profileTxTracker,
             login,
             logout,
             follow,
             unfollow,
             create,
             edit,
-            setCreateProfileStatus,
-            setCreateProfileTXs
+            setProfileTxStatus,
+            setProfileTxTracker
         }}>
             {children}
         </AuthContext.Provider>

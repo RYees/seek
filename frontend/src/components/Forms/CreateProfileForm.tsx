@@ -13,7 +13,7 @@ import { AuthContext } from "@/context/auth";
 export default function CreateProfileForm() {
     const {
         userProfile,
-        createProfileStatus,
+        profileTxStatus,
         create,
         edit
     } = useContext(AuthContext);
@@ -61,14 +61,14 @@ export default function CreateProfileForm() {
                                 className={styles.createProfileBtn}
                                 disabled={
                                     Boolean(userProfile?.name) ||
-                                    createProfileStatus.name.status === "LOADING" ||
-                                    createProfileStatus.name.status === "COMPLETED"
+                                    profileTxStatus.create.status === "LOADING" ||
+                                    profileTxStatus.create.status === "COMPLETED"
                                 }
                                 onClick={() => create(newProfile.name)}
                             >Register Name</button>
                         </div>
                     </div>
-                    <LoaderCard {...createProfileStatus.name} />
+                    <LoaderCard {...profileTxStatus.create} />
                 </div>
                 <div className={styles.createProfileFormStep}>
                     <div>
@@ -100,13 +100,13 @@ export default function CreateProfileForm() {
                                 className={styles.createProfileBtn}
                                 disabled={
                                     !Boolean(userProfile?.name) ||
-                                    createProfileStatus.info.status === "LOADING"
+                                    profileTxStatus.edit.status === "LOADING"
                                 }
                                 onClick={() => edit(newProfile.name, newProfile.description, newProfile.avatar)}
                             >Customize Profile</button>
                         </div>
                     </div>
-                    <LoaderCard {...createProfileStatus.info} />
+                    <LoaderCard {...profileTxStatus.edit} />
                 </div>
             </div>
             <div className={styles.createProfileFormPreview}>
@@ -119,5 +119,5 @@ export default function CreateProfileForm() {
                 />
             </div>
         </div>
-    )
+    );
 }

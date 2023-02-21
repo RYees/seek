@@ -9,33 +9,31 @@ export default function NFTsCard(
 
     return (
         <div className={styles.nftsContainer}>
-            <div className={styles.nftsCard}>
-                <div className={styles.nftsCardHead}>
-                    <p>NFTs</p>
-                    <Link href="/nfts">
-                        <div>See all</div>
-                    </Link>
+            {
+                nfts.length > 0 &&
+                <div className={styles.nftsCard}>
+                    <div className={styles.nftsCardHead}>
+                        <p>NFTs</p>
+                        <Link href="/nfts">
+                            <div>See all</div>
+                        </Link>
+                    </div>
+                    <div className={styles.nftsCardBody}>
+                        {
+                            nfts.map((nft: INFTCard) => (
+                                <div key={nft.id} className={styles.nftsCardImg}>
+                                    <Image
+                                        src={nft.image}
+                                        alt="nft"
+                                        width={60}
+                                        height={60}
+                                    />
+                                </div>
+                            ))
+                        }
+                    </div>
                 </div>
-                <div className={styles.nftsCardBody}>
-                    {
-                        nfts.length === 0 &&
-                        <p>User has no NFTs.</p>
-                    }
-                    {
-                        nfts.length > 0 &&
-                        nfts.slice(0, 9).map((nft) => (
-                            <div key={nft.id} className={styles.nftsCardImg}>
-                                <Image
-                                    src={nft.image}
-                                    alt="nft"
-                                    width={60}
-                                    height={60}
-                                />
-                            </div>
-                        ))
-                    }
-                </div>
-            </div>
+            }
         </div>
-    )
+    );
 }

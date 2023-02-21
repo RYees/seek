@@ -7,6 +7,7 @@ import ConnectBtn from "./Buttons/ConnectBtn";
 import CreateBtn from "./Buttons/CreateBtn";
 import UserIcon from "./Icons/UserIcon";
 import LogoutIcon from "./Icons/LogoutIcon";
+import SettingsIcon from "./Icons/SettingsIcon";
 import { parseURL } from "@/helpers/functions";
 import { AuthContext } from "@/context/auth";
 
@@ -53,7 +54,13 @@ export default function Navbar() {
                                                 <div className={styles.navbarPopoverOption}>
                                                     <Link href={`/${user.addr}`}>
                                                         <UserIcon />
-                                                        <span>Profile</span>
+                                                        <span>View profile</span>
+                                                    </Link>
+                                                </div>
+                                                <div className={styles.navbarPopoverOption}>
+                                                    <Link href="/edit">
+                                                        <SettingsIcon />
+                                                        <span>Edit profile</span>
                                                     </Link>
                                                 </div>
                                                 <div className={styles.navbarPopoverOption}>

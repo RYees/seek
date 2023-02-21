@@ -6,6 +6,7 @@ import { AuthContext } from "@/context/auth";
 import Navbar from "@/components/Navbar";
 import ProfileCard from "@/components/Cards/ProfileCard";
 import SearchBar from "@/components/SearchBar";
+import LoadingCard from "@/components/Cards/LoadingCard";
 import { IProfileCard } from "@/types";
 import { getProfile } from "@/cadence/scripts/getProfile";
 // @ts-ignore
@@ -15,6 +16,10 @@ import * as types from "@onflow/types";
 
 export default function Home() {
   const authContext = useContext(AuthContext);
+  const [state, setState] = useState({
+    loading: true,
+    error: "",
+  });
 
   // TODO: get list from backend
   const [list, setList] = useState<string[]>([
@@ -28,7 +33,9 @@ export default function Home() {
 
   // Get profiles to display users
   useEffect(() => {
+    // Reset
     setProfiles([]);
+    setState({ loading: true, error: "" });
 
     if (list.length === 0) return;
 
@@ -46,9 +53,19 @@ export default function Home() {
       try {
         const res = (await Promise.all(promises))
           .filter((profile) => profile !== null);
+
+        // Update state variables
         setProfiles([...res]);
-      } catch (error) {
-        console.error(error);
+        setState({
+          loading: false,
+          error: ""
+        });
+      } catch (err) {
+        console.error(err);
+        setState({
+          loading: false,
+          error: "Error: Something went wrong. Please try again."
+        });
       }
     }
 
@@ -79,13 +96,20 @@ export default function Home() {
         <br></br>
         <div className={styles.profiles}>
           {
-            profiles.length > 0 &&
-            profiles.map((profile: IProfileCard) => (
-              <ProfileCard
-                key={profile.address}
-                {...profile}
+            (state.loading || state.error)
+              ? <LoadingCard
+                loading={state.loading}
+                error={state.error}
               />
-            ))
+              : (
+                profiles.length > 0 &&
+                profiles.map((profile: IProfileCard) => (
+                  <ProfileCard
+                    key={profile.address}
+                    {...profile}
+                  />
+                ))
+              )
           }
         </div>
       </main>

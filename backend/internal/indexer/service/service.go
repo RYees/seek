@@ -48,7 +48,7 @@ func NewService() (*Service, error) {
 	sqlDB.SetConnMaxLifetime(time.Hour)
 
 	// Migrate the schema
-	err = db_client.AutoMigrate(&model.Offset{}, &model.Profile{}, &model.Historical{})
+	err = db_client.AutoMigrate(&model.Offset{}, &model.Profile{}, &model.Historical{}, &model.Follow{}, &model.Thought{})
 	if err != nil {
 		zap.L().Fatal("failed to migrate database", zap.Error(err))
 		return nil, err

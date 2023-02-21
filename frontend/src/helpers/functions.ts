@@ -1,5 +1,9 @@
 import { INftList } from "@/types";
-import { MAX_NUM_OF_NFT, PRIORITY_NFT_COLLECTIONS } from "./constants";
+import {
+    MAX_NUM_OF_NFT,
+    PRIORITY_NFT_COLLECTIONS,
+    IFPS_GATEWAY,
+} from "@/helpers/constants";
 
 export const intlCompactNumFormat = function (
     num: number,
@@ -58,7 +62,6 @@ export const orderNFTs = (catalog: any, account: string) => {
 
         // Check if the collection is in the catalog
         if (keys.includes(collectionName)) {
-            // const nftIDs = [];
             const extraIDs = catalog[collectionName]?.extraIDs;
             for (let i = 0; i < extraIDs.length; i++) {
                 if (count >= MAX_NUM_OF_NFT) break;
@@ -96,27 +99,24 @@ export const orderNFTs = (catalog: any, account: string) => {
             }
         }
     }
-    console.log(orderedNFTs);
 
     return orderedNFTs;
 };
 
 export const parseURL = (url: string) => {
-    let parsedURL;
+    let parsedURL = url;
 
     if (url.includes("ipfs")) {
         if (url.includes("ipfs://")) {
-            parsedURL = `https://cf-ipfs.com/ipfs/${url.slice(7)}`;
+            parsedURL = `${IFPS_GATEWAY}/${url.slice(7)}`;
         } else {
             const index = url.indexOf("ipfs/");
             const slice = index ? index + 5 : index + 6;
             const str = url.slice(slice, url.length);
 
-            parsedURL = `https://cf-ipfs.com/ipfs/${str}`;
+            parsedURL = `${IFPS_GATEWAY}/${str}`;
         }
-    } else {
-        parsedURL = url;
     }
-    console.log(url);
+
     return parsedURL;
 };

@@ -21,8 +21,16 @@
     padding: 8px;
 }
 
-.postCardImg img {
+.postCard img {
     border-radius: 4px;
+    object-fit: cover;
+}
+
+.postCardPlaceholder {
+    background: var(--gradient-bg);
+    border-radius: 4px;
+    min-width: 40px;
+    min-height: 40px;
 }
 
 .postCard input {

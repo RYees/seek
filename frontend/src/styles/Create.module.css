@@ -1,0 +1,36 @@
+.createLayout {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 1rem 1rem 6rem;
+    text-align: left;
+}
+
+.createLayoutTop {
+    display: none;
+}
+
+.createLayoutBot {
+    display: none;
+}
+
+.createLayout p {
+    color: var(--medium-gray);
+    font-weight: 300;
+}
+
+@media (min-width: 1120px) {
+    .createLayout {
+        grid-template-columns: 200px 2fr 200px;
+        grid-gap: 2rem;
+    }
+
+    .createLayoutTop {
+        display: block;
+    }
+
+    .createLayoutBot {
+        display: block;
+    }
+}

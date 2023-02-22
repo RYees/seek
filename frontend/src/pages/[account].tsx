@@ -1,6 +1,6 @@
-import { useState } from "react";
-import Head from "next/head";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import Head from "next/head";
 import Navbar from "@/components/Navbar";
 import Layout from "@/components/Layout";
 import { ILoadingCard } from "@/types";
@@ -24,6 +24,7 @@ export default function Account() {
             <main>
                 <Navbar />
                 <Layout
+                    title="Posts"
                     account={account}
                     state={state}
                     setState={setState}

@@ -1,9 +1,23 @@
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 import Head from "next/head";
 import styles from "@/styles/Create.module.css";
+import { useContext } from "react";
+import { AuthContext } from "@/context/auth";
 import Navbar from "@/components/Navbar";
 import CreateProfileForm from "@/components/Forms/CreateProfileForm";
 
 export default function Create() {
+    const { user } = useContext(AuthContext);
+    const router = useRouter();
+
+    // Redirect to connect page if the user isn't logged in
+    useEffect(() => {
+        if (!user || !user?.loggedIn) {
+            router.push("/connect");
+        }
+    }, [user]);
+
     return (
         <>
             <Head>

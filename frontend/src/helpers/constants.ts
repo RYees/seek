@@ -53,10 +53,6 @@ export const FLOW_FIND_CONTRACTS: any = {
 
 export const MAX_NUM_OF_NFT = 9;
 
-export const PRIORITY_NFT_COLLECTIONS = [
-    "Flovatar",
-    "PartyMansionDrinksContract",
-    "GoatedGoats",
-];
+export const NFT_CATALOG = ["Flovatar"]; // TODO: add more
 
 export const IFPS_GATEWAY = "https://cf-ipfs.com/ipfs";

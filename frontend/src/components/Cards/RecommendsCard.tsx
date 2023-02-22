@@ -15,31 +15,34 @@ export default function RecommendsCard(
                 <p>Who to follow</p>
                 {
                     recommended.length > 0 &&
-                    recommended.slice(0, 5).map((profile) => (
-                        <div key={profile.address} className={styles.recommendsCardProfile}>
-                            <div className={styles.recommendsCardProfileImg}>
-                                {
-                                    profile.avatar ?
-                                        <Image
-                                            src={parseURL(profile.avatar)}
-                                            alt="avatar"
-                                            width={40}
-                                            height={40}
-                                        />
-                                        : <div className={styles.recommendsCardImgPlaceholder}></div>
-                                }
+                    recommended.slice(0, 3).map((profile) => (
+                        <div key={profile.address}>
+                            <div className={styles.recommendsCardProfile}>
+                                <div className={styles.recommendsCardProfileImg}>
+                                    {
+                                        profile.avatar ?
+                                            <Image
+                                                src={parseURL(profile.avatar)}
+                                                alt="avatar"
+                                                width={40}
+                                                height={40}
+                                            />
+                                            : <div className={styles.recommendsCardImgPlaceholder}></div>
+                                    }
+                                </div>
+                                <div className={styles.recommendsCardProfileInfo}>
+                                    <Link href={`/${profile.address}`}>
+                                        <div className={styles.recommendsCardProfileName}>{profile.name}</div>
+                                        <div>{
+                                            profile.findName ?
+                                                `${String(profile.findName + ".find")}`
+                                                : `${profile.address.slice(0, 6)}...${profile.address.slice(-6)}`
+                                        }</div>
+                                    </Link>
+                                </div>
+                                <FollowBtn address={profile.address} />
                             </div>
-                            <div className={styles.recommendsCardProfileInfo}>
-                                <div className={styles.recommendsCardProfileName}>{profile.name}</div>
-                                <Link href={`/${profile.address}`}>
-                                    <div>{
-                                        profile.findName ?
-                                            `${String(profile.findName + ".find")}`
-                                            : `${profile.address.slice(0, 6)}...${profile.address.slice(-6)}`
-                                    }</div>
-                                </Link>
-                            </div>
-                            <FollowBtn address={profile.address} />
+                            <div className={styles.recommendsCardReason}>{profile.reason}</div>
                         </div>
                     ))
                 }

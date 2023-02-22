@@ -9,13 +9,11 @@ import ProfileCard from "../Cards/ProfileCard";
 import LoaderCard from "@/components/Cards/LoaderCard";
 import { IProfileCard } from "@/types";
 import { AuthContext } from "@/context/auth";
+import { ActionsContext } from "@/context/actions";
 
 export default function EditProfileForm() {
-    const {
-        userProfile,
-        profileTxStatus,
-        edit,
-    } = useContext(AuthContext);
+    const { userProfile, } = useContext(AuthContext);
+    const { profileTxStatus, edit, } = useContext(ActionsContext);
     const [editProfile, setEditProfile] = useState<IProfileCard>({
         name: "",
         description: "",
@@ -52,7 +50,7 @@ export default function EditProfileForm() {
                                 name="name"
                                 value={editProfile.name}
                                 onChange={handleOnInputChange}
-                                placeholder="Enter name..."
+                                placeholder="Profile name..."
                                 autoComplete="off"
                                 autoCorrect="off"
                             />
@@ -94,6 +92,8 @@ export default function EditProfileForm() {
                 <h3>Preview</h3>
                 <br></br>
                 <ProfileCard
+                    isProfile={true}
+                    hideFollow={true}
                     {...editProfile}
                     name={editProfile.name ? editProfile.name : "Your name"}
                     description={editProfile.description ? editProfile.description : "Get creative with your bio!"}

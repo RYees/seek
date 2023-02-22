@@ -26,7 +26,7 @@
 @media (min-width: 798px) {
     .layoutWrapper {
         grid-template-columns: auto 2fr;
-        grid-gap: 1rem;
+        grid-gap: 2rem;
     }
 
     .layoutTop {

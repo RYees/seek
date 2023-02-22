@@ -9,14 +9,15 @@ import ProfileCard from "../Cards/ProfileCard";
 import LoaderCard from "@/components/Cards/LoaderCard";
 import { IProfileCard } from "@/types";
 import { AuthContext } from "@/context/auth";
+import { ActionsContext } from "@/context/actions";
 
 export default function CreateProfileForm() {
+    const { userProfile, } = useContext(AuthContext);
     const {
-        userProfile,
         profileTxStatus,
         create,
         edit
-    } = useContext(AuthContext);
+    } = useContext(ActionsContext);
     const [newProfile, setNewProfile] = useState<IProfileCard>({
         name: "",
         description: "",
@@ -53,7 +54,7 @@ export default function CreateProfileForm() {
                                 value={userProfile?.name ? "" : newProfile.name}
                                 onChange={handleOnInputChange}
                                 disabled={Boolean(userProfile?.name)}
-                                placeholder="Enter name..."
+                                placeholder="Profile name..."
                                 autoComplete="off"
                                 autoCorrect="off"
                             />
@@ -114,6 +115,8 @@ export default function CreateProfileForm() {
                 <br></br>
                 <ProfileCard
                     {...newProfile}
+                    isProfile={true}
+                    hideFollow={true}
                     name={newProfile.name ? newProfile.name : "Your name"}
                     description={newProfile.description ? newProfile.description : "Get creative with your bio!"}
                 />

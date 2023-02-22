@@ -1,4 +1,5 @@
 .navbar {
+    background-color: var(--black);
     width: 100%;
     height: 100px;
 }
@@ -17,6 +18,25 @@
     align-items: center;
 }
 
+.navbarProfileInfo {
+    cursor: default;
+    position: relative;
+}
+
+.navbarProfileInfoName {
+    color: var(--white);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.05rem;
+    text-align: left;
+}
+
+.navbarProfileInfoAddress {
+    color: var(--light-gray);
+    font-size: 1rem;
+    text-align: left;
+}
+
 .navbarImg {
     background-color: var(--black);
     border: var(--border);
@@ -25,7 +45,6 @@
     width: 56px;
     height: 56px;
     padding: 8px;
-    position: relative;
 }
 
 .navbarImg img {
@@ -48,7 +67,7 @@
     position: absolute;
     top: 100%;
     right: 0;
-    width: 200px;
+    width: 180px;
     padding: 1rem;
     text-align: left;
 }
@@ -61,7 +80,7 @@
 }
 
 .navbarPopoverOption a,
-.navbarPopoverOption button {
+.navbarPopoverOption div {
     display: grid;
     align-items: center;
     justify-content: flex-start;
@@ -85,4 +104,49 @@
 .navbarPopoverOption:active {
     background: var(--black);
     box-shadow: var(--shadow-in);
+}
+
+.navbarLinks {
+    display: flex;
+    align-items: center;
+}
+
+.navbarLinkLeft,
+.navbarLinkRight {
+    background-color: var(--black);
+    border: var(--border);
+    border-radius: 4px;
+    color: var(--light-gray);
+    font-size: 1.1rem;
+    width: 100px;
+    padding: 0.75rem 1.5rem;
+}
+
+.navbarLinkLeft {
+    border-radius: 10px 0px 0px 10px;
+}
+
+.navbarLinkRight {
+    border-radius: 0px 10px 10px 0px;
+}
+
+.navbarLinkActive {
+    box-shadow: var(--shadow-in);
+}
+
+.navbarProfileDetails {
+    display: none;
+}
+
+@media (min-width: 798px) {
+    .navbarProfileInfo {
+        display: grid;
+        grid-template-columns: 56px 1fr;
+        align-items: center;
+        grid-gap: 0.75rem;
+    }
+
+    .navbarProfileDetails {
+        display: block;
+    }
 }

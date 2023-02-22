@@ -66,6 +66,11 @@ func (s *Server) Start() {
 		}
 	}()
 
+	s.httpClient.GET("/health", Health)
+	s.httpClient.GET("/feed/:user", s.Feed)
+	s.httpClient.GET("/posts/:user", s.Posts)
+	s.httpClient.GET("/recommended/:user", s.Recommended)
+
 	// Start server
 	zap.L().Info("Seek engine server started")
 	if err := s.httpClient.Run(); err != nil {

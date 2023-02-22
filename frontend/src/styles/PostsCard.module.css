@@ -1,0 +1,77 @@
+.postCardTitle {
+    border: var(--border);
+    border-radius: 10px;
+    box-shadow: var(--shadow-out);
+    color: var(--light-gray);
+    padding: 0.75rem 2rem;
+    font-size: 1.75rem;
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+.postCard {
+    border: var(--border);
+    border-radius: 10px;
+    box-shadow: var(--shadow-out);
+    margin-bottom: 1rem;
+    padding: 1rem 2rem;
+    text-align: left;
+}
+
+.postCardImg {
+    background-color: var(--black);
+    border: var(--border);
+    border-radius: 4px;
+    box-shadow: var(--shadow-in);
+    width: 56px;
+    height: 56px;
+    padding: 8px;
+}
+
+.postCard img {
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.postCardPlaceholder {
+    background: var(--gradient-bg);
+    border-radius: 4px;
+    min-width: 40px;
+    min-height: 40px;
+}
+
+.postCardHead {
+    display: grid;
+    grid-template-columns: 56px 1fr 24px;
+    align-items: center;
+    grid-gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.postCard a {
+    font-size: 1rem;
+    color: var(--green);
+}
+
+.postCardName {
+    color: var(--white);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.postCardTime {
+    font-size: 1rem;
+    color: var(--medium-gray);
+}
+
+.postCardText {
+    color: var(--light-gray);
+    font-size: 1.1rem;
+    font-weight: 300;
+}
+
+.postCardEmpty {
+    color: var(--medium-gray);
+    font-size: 1.2rem;
+    margin-top: 2rem;
+}

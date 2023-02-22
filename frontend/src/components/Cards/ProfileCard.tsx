@@ -4,6 +4,7 @@ import Image from "next/image";
 import { IProfileCard } from "@/types";
 import { intlCompactNumFormat, parseURL } from "@/helpers/functions";
 import FollowBtn from "../Buttons/FollowBtn";
+import EditProfileBtn from "../Buttons/EditProfileBtn";
 
 export default function ProfileCard({
     address,
@@ -12,7 +13,9 @@ export default function ProfileCard({
     followers,
     following,
     avatar,
-    findName
+    findName,
+    isProfile,
+    hideFollow
 }: IProfileCard) {
 
     return (
@@ -34,13 +37,20 @@ export default function ProfileCard({
                 </div>
                 <div className={styles.profileInfo}>
                     <div className={styles.profileFollow}>
-                        <div className={styles.profileName}>{name}</div>
-                        <FollowBtn address={address} />
-                    </div>
-                    <div className={styles.profileDetails}>
-                        <Link href={`/${address}`}>
-                            <div>{findName ? `${String(findName + ".find")}` : address}</div>
-                        </Link>
+                        <div className={styles.profileDetails}>
+                            <Link href={`/${address}`}>
+                                <div>{name}</div>
+                                <div>{findName ? `${String(findName + ".find")}` : `${address.slice(0, 6)}...${address.slice(-6)}`}</div>
+                            </Link>
+                        </div>
+                        {
+                            !hideFollow &&
+                            (
+                                isProfile
+                                    ? <EditProfileBtn />
+                                    : <FollowBtn address={address} />
+                            )
+                        }
                     </div>
                     <div className={styles.profileBio}>{description}</div>
                 </div>
@@ -57,5 +67,5 @@ export default function ProfileCard({
                 </div>
             </div>
         </div>
-    )
+    );
 }

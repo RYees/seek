@@ -1,12 +1,11 @@
-.followBtn {
+.editProfileBtn {
     background-color: var(--black);
     border: var(--border);
     border-radius: 40px;
     box-shadow: var(--shadow-out);
+    display: flex;
     color: var(--light-gray);
     cursor: pointer;
     font-size: 0.95rem;
-    min-width: 92px;
     padding: 0.5rem 1rem;
-    text-align: center;
 }

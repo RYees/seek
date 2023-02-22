@@ -14,9 +14,10 @@ export default function NFTsCard(
                 <div className={styles.nftsCard}>
                     <div className={styles.nftsCardHead}>
                         <p>NFTs</p>
-                        <Link href="/nfts">
+                        {/* TODO: add link to all nfts */}
+                        {/* <Link href="/nfts">
                             <div>See all</div>
-                        </Link>
+                        </Link> */}
                     </div>
                     <div className={styles.nftsCardBody}>
                         {

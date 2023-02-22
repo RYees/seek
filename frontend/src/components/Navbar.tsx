@@ -5,13 +5,17 @@ import Link from "next/link";
 import Logo from "./Logo";
 import ConnectBtn from "./Buttons/ConnectBtn";
 import CreateBtn from "./Buttons/CreateBtn";
-import UserIcon from "./Icons/UserIcon";
 import LogoutIcon from "./Icons/LogoutIcon";
 import SettingsIcon from "./Icons/SettingsIcon";
 import { parseURL } from "@/helpers/functions";
 import { AuthContext } from "@/context/auth";
+import { useRouter } from "next/router";
 
 export default function Navbar() {
+    const router = useRouter();
+    const pathname = router.pathname;
+    const { account } = router.query;
+    const activeLink = account ? `/${account}` : pathname;
     const { user, userProfile, logout } = useContext(AuthContext);
     const [showPopover, setPopover] = useState<boolean>(false);
 
@@ -27,36 +31,50 @@ export default function Navbar() {
         <nav className={styles.navbar}>
             <div className={styles.navbarWrapper}>
                 <Logo />
-                <div></div>
+                <div className={styles.navbarLinks}>
+                    {
+                        user?.loggedIn &&
+                        <>
+                            <Link
+                                href="/"
+                                className={`${styles.navbarLinkLeft} ${(activeLink === "/") && styles.navbarLinkActive}`}
+                            ><span>Home</span></Link>
+                            <Link
+                                href={`/${user?.addr}`}
+                                className={`${styles.navbarLinkRight} ${(activeLink === `/${user?.addr}`) && styles.navbarLinkActive}`}
+                            ><span>Profile</span></Link>
+                        </>
+                    }
+                </div>
                 {
                     user?.loggedIn
                         ? <div className={styles.navbarProfile}>
                             {
                                 userProfile
                                     ? <div
-                                        className={styles.navbarImg}
+                                        className={styles.navbarProfileInfo}
                                         onMouseEnter={handleMouseEnter}
                                         onMouseLeave={handleMouseLeave}
                                     >
-                                        {
-                                            userProfile?.avatar ?
-                                                <Image
-                                                    src={parseURL(userProfile?.avatar)}
-                                                    alt="avatar"
-                                                    width={40}
-                                                    height={40}
-                                                />
-                                                : <div className={styles.navbarImgPlaceholder}></div>
-                                        }
+                                        <div className={styles.navbarImg}>
+                                            {
+                                                userProfile?.avatar ?
+                                                    <Image
+                                                        src={parseURL(userProfile?.avatar)}
+                                                        alt="avatar"
+                                                        width={40}
+                                                        height={40}
+                                                    />
+                                                    : <div className={styles.navbarImgPlaceholder}></div>
+                                            }
+                                        </div>
+                                        <div className={styles.navbarProfileDetails}>
+                                            <div className={styles.navbarProfileInfoName}>{userProfile.name}</div>
+                                            <div className={styles.navbarProfileInfoAddress}>{`${userProfile.address.slice(0, 6)}...${userProfile.address.slice(-6)}`}</div>
+                                        </div>
                                         {
                                             showPopover &&
                                             <div className={styles.navbarPopover}>
-                                                <div className={styles.navbarPopoverOption}>
-                                                    <Link href={`/${user.addr}`}>
-                                                        <UserIcon />
-                                                        <span>View profile</span>
-                                                    </Link>
-                                                </div>
                                                 <div className={styles.navbarPopoverOption}>
                                                     <Link href="/edit">
                                                         <SettingsIcon />
@@ -64,10 +82,10 @@ export default function Navbar() {
                                                     </Link>
                                                 </div>
                                                 <div className={styles.navbarPopoverOption}>
-                                                    <button onClick={() => logout()}>
+                                                    <div onClick={() => logout()}>
                                                         <LogoutIcon />
                                                         <span>Logout</span>
-                                                    </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         }

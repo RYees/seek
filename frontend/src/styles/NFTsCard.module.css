@@ -4,7 +4,7 @@
     border: var(--border);
     border-radius: 20px;
     min-width: 300px;
-    max-width: 340px;
+    max-width: 320px;
     margin-top: 2rem;
     padding: 1rem 1rem 2rem;
 }
@@ -27,7 +27,7 @@
 
 .nftsCardBody {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(76px, 1fr));
+    grid-template-columns: repeat(3, minmax(76px, 1fr));
     grid-gap: 1rem;
 }
 

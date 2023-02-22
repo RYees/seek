@@ -1,15 +1,27 @@
+export interface CancellablePromise<T> extends Promise<T> {
+    cancel: () => void;
+}
+
+export type QueryPromise = CancellablePromise<string | boolean>;
+
 export interface IAuthContext {
     user: IUser | null;
     hasProfile: boolean | null;
     userProfile: IUserProfile | null;
-    profileTxStatus: IProfileTxStatus;
-    profileTxTracker: IProfileTxTracker;
+    trigger: string;
     login: () => void;
     logout: () => void;
+    setTrigger: (trigger: string) => void;
+}
+
+export interface IActionsContext {
+    profileTxStatus: IProfileTxStatus;
+    profileTxTracker: IProfileTxTracker;
     follow: (address: string) => void;
     unfollow: (address: string) => void;
     create: (name: string) => void;
     edit: (name: string, description: string, avatar: string) => void;
+    post: (message: string) => void;
     setProfileTxStatus: (status: IProfileTxStatus) => void;
     setProfileTxTracker: (tx: IProfileTxTracker) => void;
 }
@@ -23,11 +35,24 @@ export interface IProfileCard {
     following: any[];
     avatar: string;
     findName: string;
+    isProfile?: boolean;
+    hideFollow?: boolean;
+    reason?: string;
 }
 
 export interface INFTCard {
     id: number;
     image: string;
+}
+
+export interface IPostCard {
+    id: number;
+    creator: string;
+    creation_date: string;
+    message: string;
+    name: string;
+    avatar: string;
+    address: string;
 }
 
 export interface IUser {
@@ -82,4 +107,9 @@ export interface IProfileTxStatus {
 export interface IProfileTxTracker {
     create: string;
     edit: string;
+}
+
+export interface IModalType {
+    action: "FOLLOW" | "UNFOLLOW" | "CREATE" | "EDIT" | "POST";
+    transactionID: string;
 }

@@ -1,8 +1,8 @@
-.recommendsContainer {
+.featuredContainer {
     text-align: left;
 }
 
-.recommendsCard {
+.featuredCard {
     background-color: var(--black);
     box-shadow: var(--shadow-out);
     border: var(--border);
@@ -12,22 +12,22 @@
     padding: 1rem;
 }
 
-.recommendsCard p {
+.featuredCard p {
     font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 1rem;
     text-align: left;
 }
 
-.recommendsCardProfile {
+.featuredCardProfile {
     display: grid;
     grid-template-columns: 56px 1fr 92px;
     align-items: center;
     grid-gap: 0.5rem;
-    margin-bottom: 0.25rem;
+    margin-bottom: 1rem;
 }
 
-.recommendsCardProfileImg {
+.featuredCardProfileImg {
     background-color: var(--black);
     border: var(--border);
     border-radius: 4px;
@@ -37,35 +37,29 @@
     padding: 8px;
 }
 
-.recommendsCardProfileImg img {
+.featuredCardProfileImg img {
     border-radius: 4px;
     object-fit: cover;
 }
 
-.recommendsCardProfileName {
+.featuredCardProfileName {
     color: var(--white);
     font-size: 1rem;
 }
 
-.recommendsCardProfileHandle {
+.featuredCardProfileHandle {
     font-size: 1rem;
     color: var(--medium-gray);
 }
 
-.recommendsCardProfileInfo a {
+.featuredCardProfileInfo a {
     font-size: 0.8rem;
     color: var(--green);
 }
 
-.recommendsCardImgPlaceholder {
+.featuredCardImgPlaceholder {
     background: var(--gradient-bg);
     border-radius: 4px;
     min-width: 40px;
     min-height: 40px;
-}
-
-.recommendsCardReason {
-    font-size: 1rem;
-    color: var(--medium-gray);
-    margin-bottom: 1rem;
 }

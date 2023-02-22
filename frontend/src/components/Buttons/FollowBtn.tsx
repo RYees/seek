@@ -1,11 +1,13 @@
 import { useContext } from "react";
 import styles from "@/styles/FollowBtn.module.css";
 import { AuthContext } from "@/context/auth";
+import { ActionsContext } from "@/context/actions";
 
 export default function FollowBtn(
     { address }: { address: string }
 ) {
-    const { userProfile, follow, unfollow } = useContext(AuthContext);
+    const { userProfile, } = useContext(AuthContext);
+    const { follow, unfollow } = useContext(ActionsContext);
 
     const isFollowing = userProfile?.following
         .map((profile) => profile.following)

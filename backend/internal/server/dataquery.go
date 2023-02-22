@@ -69,7 +69,7 @@ func (s *Server) GetRecommemdedAccounts(user string) ([]RecommendedAccount, erro
 
 	// if the query returns no results, then we get the accounts with most followers
 	if len(accounts) == 0 {
-		query = "select \"following\" as address , concat('This profile has ',count(follower),' follower(s)') as reason "
+		query = "select \"following\" as address , concat('Top followed profile with ',count(follower),' follower(s)') as reason "
 		query += "from follows group by \"following\" ORDER BY count(follower) desc limit ? offset ?"
 		err := s.dbClient.Raw(query, limit, offset).Scan(&accounts)
 		if err.Error != nil && err.Error != gorm.ErrRecordNotFound {

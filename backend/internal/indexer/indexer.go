@@ -35,7 +35,7 @@ func (indexer *Indexer) Start() {
 			zap.L().Error("panic", zap.String("error", fmt.Sprintf("%+v", err)))
 		}
 	}()
-	zap.L().Info("Rubik engine indexer started")
+	zap.L().Info("Seek engine indexer started")
 
 	// Start Cron Jobs for fetching data
 	go indexer.service.SyncFollowsCron(context.Background())

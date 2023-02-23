@@ -1,4 +1,4 @@
-export const FLOW_FIND_CONTRACTS: any = {
+export const FLOW_CONTRACTS: any = {
     testnet: {
         FIND: "0x35717efbbce11c74",
         Profile: "0x35717efbbce11c74",
@@ -23,6 +23,11 @@ export const FLOW_FIND_CONTRACTS: any = {
         FiatToken: "0xa983fecbed621163",
         FindThoughts: "0x35717efbbce11c74",
         FindPack: "0x35717efbbce11c74",
+        Flovatar: "0x0cf264811b95d465",
+        FlovatarComponent: "0x0cf264811b95d465",
+        FlovatarComponentTemplate: "0x0cf264811b95d465",
+        FlovatarPack: "0x0cf264811b95d465",
+        FlovatarMarketplace: "0x0cf264811b95d465",
     },
     mainnet: {
         FIND: "0x097bafa4e0b48eef",
@@ -48,6 +53,11 @@ export const FLOW_FIND_CONTRACTS: any = {
         FiatToken: "0xb19436aae4d94622",
         FindThoughts: "0x097bafa4e0b48eef",
         FindPack: "0x097bafa4e0b48eef",
+        Flovatar: "0x921ea449dffec68a",
+        FlovatarComponent: "0x921ea449dffec68a",
+        FlovatarComponentTemplate: "0x921ea449dffec68a",
+        FlovatarPack: "0x921ea449dffec68a",
+        FlovatarMarketplace: "0x921ea449dffec68a",
     },
 };
 

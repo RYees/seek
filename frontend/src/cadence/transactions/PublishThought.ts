@@ -1,13 +1,13 @@
-import { FLOW_FIND_CONTRACTS } from "@/helpers/constants";
+import { FLOW_CONTRACTS } from "@/helpers/constants";
 
 const network = process.env.NEXT_PUBLIC_FLOW_NETWORK || "testnet";
 
 export const PublishThought = `
-    import MetadataViews from ${FLOW_FIND_CONTRACTS[network].MetadataViews};
-    import FindThoughts from ${FLOW_FIND_CONTRACTS[network].FindThoughts};
-    import FINDNFTCatalog from ${FLOW_FIND_CONTRACTS[network].FINDNFTCatalog};
-    import FindViews from ${FLOW_FIND_CONTRACTS[network].FindViews};
-    import FindUtils from ${FLOW_FIND_CONTRACTS[network].FindUtils};
+    import MetadataViews from ${FLOW_CONTRACTS[network].MetadataViews};
+    import FindThoughts from ${FLOW_CONTRACTS[network].FindThoughts};
+    import FINDNFTCatalog from ${FLOW_CONTRACTS[network].FINDNFTCatalog};
+    import FindViews from ${FLOW_CONTRACTS[network].FindViews};
+    import FindUtils from ${FLOW_CONTRACTS[network].FindUtils};
 
     transaction(header: String , body: String , tags: [String], mediaHash: String?, mediaType: String?, quoteNFTOwner: Address?, quoteNFTType: String?, quoteNFTId: UInt64?, quoteCreator: Address?, quoteId: UInt64?) {
 

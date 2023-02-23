@@ -14,7 +14,7 @@ export default function Edit() {
     // Redirect to connect page if the user isn't logged in
     useEffect(() => {
         if (!user || !user?.loggedIn) {
-            router.push("/connect");
+            router.push("/");
         }
     }, [user]);
 
@@ -31,6 +31,7 @@ export default function Edit() {
                 <div className={styles.editLayout}>
                     <div className={styles.editLayoutTop}></div>
                     <div className={styles.editLayoutMid}>
+                        <br></br><br></br>
                         <h2>Edit profile</h2>
                         <EditProfileForm />
                     </div>

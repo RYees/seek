@@ -1,21 +1,21 @@
-import { FLOW_FIND_CONTRACTS } from "@/helpers/constants";
+import { FLOW_CONTRACTS } from "@/helpers/constants";
 
 const network = process.env.NEXT_PUBLIC_FLOW_NETWORK || "testnet";
 
 export const CreateProfile = `
-    import FungibleToken from ${FLOW_FIND_CONTRACTS[network].FungibleToken};
-    import NonFungibleToken from ${FLOW_FIND_CONTRACTS[network].NonFungibleToken};
-    import FUSD from ${FLOW_FIND_CONTRACTS[network].FUSD};
-    import FiatToken from ${FLOW_FIND_CONTRACTS[network].FiatToken};
-    import FlowToken from ${FLOW_FIND_CONTRACTS[network].FlowToken};
-    import MetadataViews from ${FLOW_FIND_CONTRACTS[network].MetadataViews};
-    import FIND from ${FLOW_FIND_CONTRACTS[network].FIND};
-    import FindPack from ${FLOW_FIND_CONTRACTS[network].FindPack};
-    import Profile from ${FLOW_FIND_CONTRACTS[network].Profile};
-    import FindMarket from ${FLOW_FIND_CONTRACTS[network].FindMarket};
-    import FindMarketDirectOfferEscrow from ${FLOW_FIND_CONTRACTS[network].FindMarketDirectOfferEscrow};
-    import Dandy from ${FLOW_FIND_CONTRACTS[network].Dandy};
-    import FindThoughts from ${FLOW_FIND_CONTRACTS[network].FindThoughts};
+    import FungibleToken from ${FLOW_CONTRACTS[network].FungibleToken};
+    import NonFungibleToken from ${FLOW_CONTRACTS[network].NonFungibleToken};
+    import FUSD from ${FLOW_CONTRACTS[network].FUSD};
+    import FiatToken from ${FLOW_CONTRACTS[network].FiatToken};
+    import FlowToken from ${FLOW_CONTRACTS[network].FlowToken};
+    import MetadataViews from ${FLOW_CONTRACTS[network].MetadataViews};
+    import FIND from ${FLOW_CONTRACTS[network].FIND};
+    import FindPack from ${FLOW_CONTRACTS[network].FindPack};
+    import Profile from ${FLOW_CONTRACTS[network].Profile};
+    import FindMarket from ${FLOW_CONTRACTS[network].FindMarket};
+    import FindMarketDirectOfferEscrow from ${FLOW_CONTRACTS[network].FindMarketDirectOfferEscrow};
+    import Dandy from ${FLOW_CONTRACTS[network].Dandy};
+    import FindThoughts from ${FLOW_CONTRACTS[network].FindThoughts};
 
     transaction(name: String) {
         prepare(account: AuthAccount) {

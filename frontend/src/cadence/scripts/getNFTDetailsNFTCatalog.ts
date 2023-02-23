@@ -1,16 +1,16 @@
-import { FLOW_FIND_CONTRACTS } from "@/helpers/constants";
+import { FLOW_CONTRACTS } from "@/helpers/constants";
 
 const network = process.env.NEXT_PUBLIC_FLOW_NETWORK || "testnet";
 
 export const getNFTDetailsNFTCatalog = `
-    import FindMarket from ${FLOW_FIND_CONTRACTS[network].FindMarket};
-    import FindViews from ${FLOW_FIND_CONTRACTS[network].FindViews};
-    import FindUtils from ${FLOW_FIND_CONTRACTS[network].FindUtils};
-    import FIND from ${FLOW_FIND_CONTRACTS[network].FIND};
-    import MetadataViews from ${FLOW_FIND_CONTRACTS[network].MetadataViews};
-    import FINDNFTCatalog from ${FLOW_FIND_CONTRACTS[network].FINDNFTCatalog};
-    import FTRegistry from ${FLOW_FIND_CONTRACTS[network].FTRegistry};
-    import FindUserStatus from ${FLOW_FIND_CONTRACTS[network].FindUserStatus};
+    import FindMarket from ${FLOW_CONTRACTS[network].FindMarket};
+    import FindViews from ${FLOW_CONTRACTS[network].FindViews};
+    import FindUtils from ${FLOW_CONTRACTS[network].FindUtils};
+    import FIND from ${FLOW_CONTRACTS[network].FIND};
+    import MetadataViews from ${FLOW_CONTRACTS[network].MetadataViews};
+    import FINDNFTCatalog from ${FLOW_CONTRACTS[network].FINDNFTCatalog};
+    import FTRegistry from ${FLOW_CONTRACTS[network].FTRegistry};
+    import FindUserStatus from ${FLOW_CONTRACTS[network].FindUserStatus};
     
     pub struct NFTDetailReport {
         pub let findMarket: {String : FindMarket.SaleItemInformation}

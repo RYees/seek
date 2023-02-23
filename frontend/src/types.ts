@@ -6,7 +6,6 @@ export type QueryPromise = CancellablePromise<string | boolean>;
 
 export interface IAuthContext {
     user: IUser | null;
-    hasProfile: boolean | null;
     userProfile: IUserProfile | null;
     trigger: string;
     login: () => void;
@@ -26,6 +25,19 @@ export interface IActionsContext {
     setProfileTxTracker: (tx: IProfileTxTracker) => void;
 }
 
+export interface IDataContext {
+    state: ILoadingCard;
+    profile: IProfileCard | null;
+    nfts: INFTCard[];
+    posts: IPostCard[];
+    recommended: IProfileCard[];
+    featured: IProfileCard[];
+    address: string | null;
+    path: string | null;
+    setAddress: (address: string | null) => void;
+    setPath: (path: string | null) => void;
+}
+
 export interface IProfileCard {
     id?: number;
     address: string;
@@ -41,7 +53,7 @@ export interface IProfileCard {
 }
 
 export interface INFTCard {
-    id: number;
+    id: string;
     image: string;
 }
 
@@ -112,4 +124,17 @@ export interface IProfileTxTracker {
 export interface IModalType {
     action: "FOLLOW" | "UNFOLLOW" | "CREATE" | "EDIT" | "POST";
     transactionID: string;
+}
+
+export interface IFlovatarCard {
+    id: string;
+    image: string;
+    metadata?: {
+        creatorAddress: string;
+        epicCount: string;
+        legendaryCount: string;
+        rareCount: string;
+        mintSeries: string;
+    };
+    address?: string;
 }

@@ -12,7 +12,7 @@ import * as types from "@onflow/types";
 import {
     IActionsContext,
     IProfileTxStatus,
-    IProfileTxTracker
+    IProfileTxTracker,
 } from "@/types";
 import { Follow } from "@/cadence/transactions/Follow";
 import { Unfollow } from "@/cadence/transactions/Unfollow";
@@ -112,6 +112,7 @@ export const ActionsProvider = ({ children }: { children: ReactNode }) => {
             });
         });
     }, [profileTxTracker]);
+
     const follow = async (address: string) => {
         if (!user?.loggedIn) {
             alert("Please connect wallet first.");

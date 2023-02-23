@@ -1,10 +1,10 @@
-import { FLOW_FIND_CONTRACTS } from "@/helpers/constants";
+import { FLOW_CONTRACTS } from "@/helpers/constants";
 
 const network = process.env.NEXT_PUBLIC_FLOW_NETWORK || "testnet";
 
 export const getProfile = `
-    import FIND from ${FLOW_FIND_CONTRACTS[network].FIND};
-    import Profile from ${FLOW_FIND_CONTRACTS[network].Profile};
+    import FIND from ${FLOW_CONTRACTS[network].FIND};
+    import Profile from ${FLOW_CONTRACTS[network].Profile};
 
     pub fun main(address: Address) :  Profile.UserReport? {
         let account = getAccount(address)

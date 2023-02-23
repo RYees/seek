@@ -1,13 +1,13 @@
-import { FLOW_FIND_CONTRACTS } from "@/helpers/constants";
+import { FLOW_CONTRACTS } from "@/helpers/constants";
 
 const network = process.env.NEXT_PUBLIC_FLOW_NETWORK || "testnet";
 
 export const Follow = `
-  import FungibleToken from ${FLOW_FIND_CONTRACTS[network].FungibleToken};
-  import FUSD from ${FLOW_FIND_CONTRACTS[network].FUSD};
-  import FlowToken from ${FLOW_FIND_CONTRACTS[network].FlowToken};
-  import FIND from ${FLOW_FIND_CONTRACTS[network].FIND};
-  import Profile from ${FLOW_FIND_CONTRACTS[network].Profile};
+  import FungibleToken from ${FLOW_CONTRACTS[network].FungibleToken};
+  import FUSD from ${FLOW_CONTRACTS[network].FUSD};
+  import FlowToken from ${FLOW_CONTRACTS[network].FlowToken};
+  import FIND from ${FLOW_CONTRACTS[network].FIND};
+  import Profile from ${FLOW_CONTRACTS[network].Profile};
 
   // map of {User in string (find name or address) : [tag]}
   transaction(follows:{String : [String]}) {

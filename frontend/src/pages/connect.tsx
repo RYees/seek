@@ -6,9 +6,7 @@ import { useContext } from "react";
 import { AuthContext } from "@/context/auth";
 import Navbar from "@/components/Navbar";
 import ProfileCard from "@/components/Cards/ProfileCard";
-import SearchBar from "@/components/SearchBar";
 import LoadingCard from "@/components/Cards/LoadingCard";
-import ConnectBtn from "@/components/Buttons/ConnectBtn";
 import { IProfileCard } from "@/types";
 import { getProfile } from "@/cadence/scripts/getProfile";
 // @ts-ignore
@@ -26,10 +24,10 @@ export default function Connect() {
 
     // Featured users [Hardcoded data]
     const [list, setList] = useState<string[]>([
-        "0xdec5369b36230285",
-        "0xf4c99941cd3ae3d5",
         "0x886f3aeaf848c535",
         "0x92ba5cba77fc1e87",
+        "0x2a0eccae942667be",
+        "0x2022205b2cade6b0",
     ]);
     const [profiles, setProfiles] = useState<IProfileCard[]>([]);
 

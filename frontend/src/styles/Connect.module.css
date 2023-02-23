@@ -28,8 +28,9 @@
   color: var(--light-gray);
   cursor: pointer;
   width: 100%;
-  font-size: 1.25rem;
-  padding: 1rem 2rem;
+  font-size: 1.35rem;
+  max-width: 300px;
+  padding: 1.25rem 2.5rem;
   text-align: center;
 }
 

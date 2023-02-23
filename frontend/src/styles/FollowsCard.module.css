@@ -1,0 +1,56 @@
+.followsContainer {
+    text-align: left;
+}
+
+.followsCard {
+    background-color: var(--black);
+    border: var(--border);
+    border-radius: 20px;
+    min-width: 300px;
+    margin-top: 1rem;
+    padding: 1rem;
+}
+
+.followsCardProfile {
+    display: grid;
+    grid-template-columns: 56px 1fr 92px;
+    align-items: center;
+    grid-gap: 0.5rem;
+}
+
+.followsCardProfileImg {
+    background-color: var(--black);
+    border: var(--border);
+    border-radius: 4px;
+    box-shadow: var(--shadow-in);
+    width: 56px;
+    height: 56px;
+    padding: 8px;
+}
+
+.followsCardProfileImg img {
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.followsCardProfileName {
+    color: var(--white);
+    font-size: 1rem;
+}
+
+.followsCardProfileHandle {
+    font-size: 1rem;
+    color: var(--medium-gray);
+}
+
+.followsCardProfileInfo a {
+    font-size: 0.8rem;
+    color: var(--green);
+}
+
+.followsCardImgPlaceholder {
+    background: var(--gradient-bg);
+    border-radius: 4px;
+    min-width: 40px;
+    min-height: 40px;
+}

@@ -96,9 +96,6 @@ export const ActionsProvider = ({ children }: { children: ReactNode }) => {
                                 status: "COMPLETED",
                             }
                         });
-
-                        // Trigger a profile update
-                        // setTrigger(String(Date.now()));
                     }
                 } else {
                     setProfileTxStatus({

@@ -54,7 +54,7 @@ export default function CreateProfileForm() {
                                 value={userProfile?.name ? "" : newProfile.name}
                                 onChange={handleOnInputChange}
                                 disabled={Boolean(userProfile?.name)}
-                                placeholder="Profile name..."
+                                placeholder="Name.."
                                 autoComplete="off"
                                 autoCorrect="off"
                             />
@@ -82,7 +82,7 @@ export default function CreateProfileForm() {
                                 name="avatar"
                                 value={newProfile.avatar}
                                 onChange={handleOnInputChange}
-                                placeholder="Avatar URL..."
+                                placeholder="Avatar URL.."
                                 autoComplete="off"
                                 autoCorrect="off"
                             />
@@ -92,7 +92,7 @@ export default function CreateProfileForm() {
                                 name="description"
                                 value={newProfile.description}
                                 onChange={handleOnInputChange}
-                                placeholder="Bio..."
+                                placeholder="Bio.."
                                 autoComplete="off"
                                 autoCorrect="off"
                             />
@@ -117,7 +117,7 @@ export default function CreateProfileForm() {
                     {...newProfile}
                     isProfile={true}
                     hideFollow={true}
-                    name={newProfile.name ? newProfile.name : "Your name"}
+                    name={newProfile.name ? newProfile.name : "Profile name"}
                     description={newProfile.description ? newProfile.description : "Get creative with your bio!"}
                 />
             </div>

@@ -6,6 +6,8 @@ import LoaderCard from "./Cards/LoaderCard";
 // @ts-ignore
 import * as fcl from "@onflow/fcl";
 
+const network = process.env.NEXT_PUBLIC_FLOW_NETWORK || "testnet";
+
 export default function Modal() {
     const { modal, modalType, handleModal } = useContext(ModalContext);
     const { setTrigger } = useContext(AuthContext);
@@ -13,12 +15,15 @@ export default function Modal() {
         status: "LOADING",
         error: ""
     });
+    const flowScanUrl = (network === "testnet")
+        ? "https://testnet.flowscan.org"
+        : "https://flowscan.org";
 
     // Event listener for the transaction
     useEffect(() => {
         if (!modalType) return;
         if (!modalType.transactionID) return;
-
+        console.log("Transaction ID: ", modalType.transactionID)
         fcl.tx(modalType.transactionID).subscribe((res: any) => {
             if (res.statusCode === 0) {
                 if (
@@ -47,8 +52,14 @@ export default function Modal() {
                     status: "ERROR",
                 });
 
+                // Trigger a profile update
+                setTimeout(() => {
+                    setTrigger(String(Date.now()));
+                    handleModal(null);
+                }, 1500);
+
                 // TODO: alert user with the error
-                console.log(res.errorMessage);
+                console.error(res.errorMessage);
             }
         });
     }, [modalType]);
@@ -64,7 +75,13 @@ export default function Modal() {
                                 status={txStatus.status}
                                 error={txStatus.error}
                             />
-                            <div className={styles.modalContentMessage}>{`Tracking your transaction for the ${modalType?.action}: ${modalType?.transactionID}.`}</div>
+                            <div className={styles.modalContentMessage}>{`Tracking your transaction for the ${modalType?.action}: `}
+                                <a
+                                    href={`${flowScanUrl}/transaction/${modalType?.transactionID}`}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >{modalType?.transactionID}</a>
+                            </div>
                         </div>
                     </div>
                 </div>

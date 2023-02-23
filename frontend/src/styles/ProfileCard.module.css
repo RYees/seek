@@ -95,13 +95,57 @@
 .profileFollowers,
 .profileFollowing {
     color: var(--medium-gray);
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.profileSocial button:hover,
+.profileSocial button:active {
+    background: none;
+    box-shadow: none;
 }
 
 .profileFollowers div:first-child,
 .profileFollowing div:first-child {
     color: var(--white);
     font-size: 1.2rem;
+}
+
+.profileCardModal {
+    background-color: #24272c10;
+    backdrop-filter: blur(2px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.profileCardModalWrapper {
+    background-color: var(--black);
+    border: var(--border);
+    border-radius: 4px;
+    box-shadow: var(--shadow-out);
+    padding: 1rem;
+    width: 100%;
+    max-width: 340px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.profileCardModalTitle {
+    color: var(--light-gray);
+    font-size: 1.5rem;
+    font-weight: 600;
 }

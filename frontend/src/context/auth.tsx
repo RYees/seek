@@ -66,16 +66,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 // Update state variables
                 setUserProfile(res);
 
-                // // Update create profile status
-                // if (res.name) {
-                //     setProfileTxStatus({
-                //         ...profileTxStatus,
-                //         create: {
-                //             ...profileTxStatus.create,
-                //             status: "COMPLETED",
-                //         }
-                //     });
-                // }
             } catch (err) {
                 console.error(err);
             }
@@ -102,16 +92,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 // Update state variables
                 setUserProfile({ ...res });
 
-                // // Update create profile status
-                // if (res.name) {
-                //     setProfileTxStatus({
-                //         ...profileTxStatus,
-                //         create: {
-                //             ...profileTxStatus.create,
-                //             status: "COMPLETED",
-                //         }
-                //     });
-                // }
             } catch (err) {
                 console.error(err);
             }
@@ -155,20 +135,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setUser(null);
         setHasProfile(null);
         setUserProfile(null);
-        // setProfileTxStatus({
-        //     create: {
-        //         status: "INIT",
-        //         error: "",
-        //     },
-        //     edit: {
-        //         status: "INIT",
-        //         error: "",
-        //     }
-        // });
-        // setProfileTxTracker({
-        //     create: "",
-        //     edit: ""
-        // });
     };
 
     return (

@@ -1,24 +1,23 @@
-import styles from "@/styles/RecommendsCard.module.css";
+import styles from "@/styles/FollowsCard.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import { IProfileCard } from "@/types";
 import FollowBtn from "../Buttons/FollowBtn";
 import { parseURL } from "@/helpers/functions";
 
-export default function RecommendsCard(
-    { recommended }: { recommended: IProfileCard[] }
+export default function FollowsCard(
+    { follows }: { follows: IProfileCard[] }
 ) {
 
     return (
-        <div className={styles.recommendsContainer}>
-            <div className={styles.recommendsCard}>
-                <p>Who to follow</p>
+        <div className={styles.followsContainer}>
+            <div className={styles.followsCard}>
                 {
-                    recommended.length > 0 &&
-                    recommended.slice(0, 3).map((profile) => (
+                    follows.length > 0 &&
+                    follows.map((profile) => (
                         <div key={profile.address}>
-                            <div className={styles.recommendsCardProfile}>
-                                <div className={styles.recommendsCardProfileImg}>
+                            <div className={styles.followsCardProfile}>
+                                <div className={styles.followsCardProfileImg}>
                                     {
                                         profile.avatar ?
                                             <Image
@@ -27,12 +26,12 @@ export default function RecommendsCard(
                                                 width={40}
                                                 height={40}
                                             />
-                                            : <div className={styles.recommendsCardImgPlaceholder}></div>
+                                            : <div className={styles.followsCardImgPlaceholder}></div>
                                     }
                                 </div>
-                                <div className={styles.recommendsCardProfileInfo}>
+                                <div className={styles.followsCardProfileInfo}>
                                     <Link href={`/${profile.address}`}>
-                                        <div className={styles.recommendsCardProfileName}>{profile.name}</div>
+                                        <div className={styles.followsCardProfileName}>{profile.name}</div>
                                         <div>{
                                             profile.findName ?
                                                 `${String(profile.findName + ".find")}`
@@ -42,7 +41,6 @@ export default function RecommendsCard(
                                 </div>
                                 <FollowBtn address={profile.address} />
                             </div>
-                            <div className={styles.recommendsCardReason}>{profile.reason}</div>
                         </div>
                     ))
                 }

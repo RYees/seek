@@ -44,3 +44,11 @@
     align-items: center;
     justify-content: center;
 }
+
+.modal a {
+    color: var(--green);
+}
+
+.modal a:hover {
+    text-decoration: underline;
+}

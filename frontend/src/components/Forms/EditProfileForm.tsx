@@ -41,7 +41,7 @@ export default function EditProfileForm() {
             <div className={styles.editProfileFormSteps}>
                 <div className={styles.editProfileFormStep}>
                     <div>
-                        <h3>Step 1: Update Profile</h3>
+                        <h3>Customize Profile</h3>
                         <p>Let the world know how awesome your are.</p>
                         <br></br><br></br>
                         <div>
@@ -50,7 +50,7 @@ export default function EditProfileForm() {
                                 name="name"
                                 value={editProfile.name}
                                 onChange={handleOnInputChange}
-                                placeholder="Profile name..."
+                                placeholder="Name.."
                                 autoComplete="off"
                                 autoCorrect="off"
                             />
@@ -60,7 +60,7 @@ export default function EditProfileForm() {
                                 name="avatar"
                                 value={editProfile.avatar}
                                 onChange={handleOnInputChange}
-                                placeholder="Avatar URL..."
+                                placeholder="Avatar URL.."
                                 autoComplete="off"
                                 autoCorrect="off"
                             />
@@ -70,7 +70,7 @@ export default function EditProfileForm() {
                                 name="description"
                                 value={editProfile.description}
                                 onChange={handleOnInputChange}
-                                placeholder="Bio..."
+                                placeholder="Bio.."
                                 autoComplete="off"
                                 autoCorrect="off"
                             />
@@ -95,7 +95,7 @@ export default function EditProfileForm() {
                     isProfile={true}
                     hideFollow={true}
                     {...editProfile}
-                    name={editProfile.name ? editProfile.name : "Your name"}
+                    name={editProfile.name ? editProfile.name : "Profile name"}
                     description={editProfile.description ? editProfile.description : "Get creative with your bio!"}
                 />
             </div>

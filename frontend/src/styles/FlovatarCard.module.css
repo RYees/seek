@@ -1,0 +1,29 @@
+.flovatarCard {
+    background-color: var(--black);
+    box-shadow: var(--shadow-out);
+    border: var(--border);
+    border-radius: 20px;
+    width: 316px;
+}
+
+.flovatarCardImg {
+    background-color: var(--black);
+    border: var(--border);
+    border-radius: 20px 20px 0 0px;
+    box-shadow: var(--shadow-in);
+    width: 316px;
+    height: 316px;
+}
+
+.flovatarCardImg img {
+    border-radius: 20px 20px 0 0px;
+    object-fit: cover;
+}
+
+.flovatarCardId {
+    color: var(--light-gray);
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    padding: 1rem 2rem;
+}

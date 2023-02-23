@@ -1,18 +1,8 @@
-import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
 import Head from "next/head";
 import Navbar from "@/components/Navbar";
 import Layout from "@/components/Layout";
-import { ILoadingCard } from "@/types";
 
 export default function Account() {
-    const router = useRouter();
-    const { account } = router.query;
-    const [state, setState] = useState<ILoadingCard>({
-        loading: true,
-        error: "",
-    });
-
     return (
         <>
             <Head>
@@ -23,12 +13,7 @@ export default function Account() {
             </Head>
             <main>
                 <Navbar />
-                <Layout
-                    title="Posts"
-                    account={account}
-                    state={state}
-                    setState={setState}
-                />
+                <Layout title="Posts" />
             </main>
         </>
     );

@@ -1,11 +1,14 @@
+import { useContext } from "react";
 import styles from "@/styles/NFTsCard.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import { INFTCard } from "@/types";
+import { DataContext } from "@/context/data";
 
 export default function NFTsCard(
     { nfts }: { nfts: INFTCard[] }
 ) {
+    const { address } = useContext(DataContext);
 
     return (
         <div className={styles.nftsContainer}>
@@ -13,16 +16,21 @@ export default function NFTsCard(
                 nfts.length > 0 &&
                 <div className={styles.nftsCard}>
                     <div className={styles.nftsCardHead}>
-                        <p>NFTs</p>
-                        {/* TODO: add link to all nfts */}
-                        {/* <Link href="/nfts">
-                            <div>See all</div>
-                        </Link> */}
+                        <p>Flovatars</p>
+                        {
+                            address &&
+                            <Link href="/flovatar">
+                                <div>See all</div>
+                            </Link>
+                        }
                     </div>
                     <div className={styles.nftsCardBody}>
                         {
-                            nfts.map((nft: INFTCard) => (
-                                <div key={nft.id} className={styles.nftsCardImg}>
+                            nfts.slice(0, 9).map((nft: INFTCard) => (
+                                <div
+                                    key={nft.id}
+                                    className={styles.nftsCardImg}
+                                >
                                     <Image
                                         src={nft.image}
                                         alt="nft"

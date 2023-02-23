@@ -31,6 +31,7 @@ export default function Create() {
                 <div className={styles.createLayout}>
                     <div className={styles.createLayoutTop}></div>
                     <div className={styles.createLayoutMid}>
+                        <br></br><br></br>
                         <h2>Create profile</h2>
                         <CreateProfileForm />
                     </div>

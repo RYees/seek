@@ -1,18 +1,13 @@
-import { useState, useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "@/context/auth";
 import Head from "next/head";
 import Navbar from "@/components/Navbar";
 import Layout from "@/components/Layout";
-import { ILoadingCard } from "@/types";
 import { useRouter } from "next/router";
 
 export default function Home() {
   const router = useRouter();
   const { user } = useContext(AuthContext);
-  const [state, setState] = useState<ILoadingCard>({
-    loading: true,
-    error: "",
-  });
 
   // Redirect to connect page if the user isn't logged in
   useEffect(() => {
@@ -31,12 +26,7 @@ export default function Home() {
       </Head>
       <main>
         <Navbar />
-        <Layout
-          title="Feed"
-          account={user?.addr}
-          state={state}
-          setState={setState}
-        />
+        <Layout title="Feed" />
       </main>
     </>
   );

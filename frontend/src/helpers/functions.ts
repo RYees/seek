@@ -39,66 +39,6 @@ export const timeSince = (date: number) => {
     return Math.floor(seconds) + "s";
 };
 
-export const orderNFTs = (catalog: any, account: string) => {
-    let count = 0;
-    const orderedNFTs: INftList[] = [];
-    const collections: string[] = NFT_CATALOG;
-    const keys = Object.keys(catalog);
-
-    // Check if there are no collections
-    if (keys.length === 0) return [];
-
-    // Loop through the nft catalog
-    for (let i = 0; i < collections.length; i++) {
-        // Get the collection name
-        const collectionName = collections[i];
-
-        // Check the number of NFTs
-        if (count >= MAX_NUM_OF_NFT) break;
-
-        // Check if the collection is in the catalog
-        if (keys.includes(collectionName)) {
-            const extraIDs = catalog[collectionName]?.extraIDs;
-            for (let i = 0; i < extraIDs.length; i++) {
-                if (count >= MAX_NUM_OF_NFT) break;
-                orderedNFTs.push({
-                    user: account,
-                    project: collectionName,
-                    id: Number(extraIDs[i]),
-                    views: [],
-                });
-                count++;
-            }
-        }
-    }
-
-    // // Loop through the rest of the collections
-    // for (let i = 0; i < keys.length; i++) {
-    //     // Get the collection name
-    //     const collectionName = keys[i];
-
-    //     // Check the number of NFTs
-    //     if (count >= MAX_NUM_OF_NFT) break;
-
-    //     // Check if the collection is in the priority collections
-    //     if (!collections.includes(collectionName)) {
-    //         const extraIDs = catalog[collectionName]?.extraIDs;
-    //         for (let i = 0; i < extraIDs.length; i++) {
-    //             if (count >= MAX_NUM_OF_NFT) break;
-    //             orderedNFTs.push({
-    //                 user: account,
-    //                 project: collectionName,
-    //                 id: Number(extraIDs[i]),
-    //                 views: [],
-    //             });
-    //             count++;
-    //         }
-    //     }
-    // }
-
-    return orderedNFTs;
-};
-
 export const parseURL = (url: string) => {
     let parsedURL = url;
 

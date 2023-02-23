@@ -1,13 +1,13 @@
-import { FLOW_FIND_CONTRACTS } from "@/helpers/constants";
+import { FLOW_CONTRACTS } from "@/helpers/constants";
 
 const network = process.env.NEXT_PUBLIC_FLOW_NETWORK || "testnet";
 
 export const EditProfile = `
-    import FungibleToken from ${FLOW_FIND_CONTRACTS[network].FungibleToken};
-    import FUSD from ${FLOW_FIND_CONTRACTS[network].FUSD};
-    import FlowToken from ${FLOW_FIND_CONTRACTS[network].FlowToken};
-    import FIND from ${FLOW_FIND_CONTRACTS[network].FIND};
-    import Profile from ${FLOW_FIND_CONTRACTS[network].Profile};
+    import FungibleToken from ${FLOW_CONTRACTS[network].FungibleToken};
+    import FUSD from ${FLOW_CONTRACTS[network].FUSD};
+    import FlowToken from ${FLOW_CONTRACTS[network].FlowToken};
+    import FIND from ${FLOW_CONTRACTS[network].FIND};
+    import Profile from ${FLOW_CONTRACTS[network].Profile};
     
     transaction(name:String, description: String, avatar: String, tags:[String], allowStoringFollowers: Bool, linkTitles : {String: String}, linkTypes: {String:String}, linkUrls : {String:String}, removeLinks : [String]) {
         

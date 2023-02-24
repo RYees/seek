@@ -21,6 +21,13 @@ export default function Flovatar() {
                 <br></br><br></br>
                 <h2>Flovatar collection</h2>
                 <br></br><br></br>
+                <button
+                    className={styles.flovatarStatsBtn}
+                    disabled={true}
+                >
+                    VIEW STATS (coming soon)
+                </button>
+                <br></br><br></br>
                 <div className={styles.flovatars}>
                     {nfts.length > 0 &&
                         nfts.map((nft) => (

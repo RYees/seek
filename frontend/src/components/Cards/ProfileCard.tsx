@@ -8,6 +8,9 @@ import FollowBtn from "../Buttons/FollowBtn";
 import EditProfileBtn from "../Buttons/EditProfileBtn";
 import FollowsCard from "./FollowsCard";
 import { getProfile } from "@/cadence/scripts/getProfile";
+import BorderIcon from "../Icons/BorderIcon";
+import FlovatarIcon from "../Icons/FlovatarIcon";
+import FindIcon from "../Icons/FindIcon";
 // @ts-ignore
 import * as fcl from "@onflow/fcl";
 // @ts-ignore
@@ -22,7 +25,10 @@ export default function ProfileCard({
     avatar,
     findName,
     isProfile,
-    hideFollow
+    hideFollow,
+    profileHasClaimed,
+    hasFlovatar,
+    hideBadges,
 }: IProfileCard) {
     const [showModal, setShowModal] = useState<string | null>(null);
     const [follows, setFollows] = useState<IProfileCard[]>([]);
@@ -90,6 +96,40 @@ export default function ProfileCard({
                                 : <div className={styles.profileImgPlaceholder}></div>
                         }
                     </div>
+                    {
+                        !hideBadges &&
+                        <div className={styles.profileImgBadgesCard}>
+                            <div className={styles.profileImgBadges}>
+                                {
+                                    profileHasClaimed &&
+                                    <span
+                                        className={styles.tooltip}
+                                        data-text="seek early supporter NFT owner."
+                                    >
+                                        <BorderIcon />
+                                    </span>
+                                }
+                                {
+                                    Boolean(findName) &&
+                                    <span
+                                        className={styles.tooltip}
+                                        data-text=".find name owner."
+                                    >
+                                        <FindIcon />
+                                    </span>
+                                }
+                                {
+                                    hasFlovatar &&
+                                    <div
+                                        className={styles.tooltip}
+                                        data-text="Flovatar NFT owner."
+                                    >
+                                        <FlovatarIcon />
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
                 </div>
                 <div className={styles.profileInfo}>
                     <div className={styles.profileFollow}>

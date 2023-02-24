@@ -14,15 +14,12 @@ export default function Home() {
     if (!(user && user.loggedIn)) {
       router.push("/connect");
     }
-  }, [user]);
+  }, [user, router]);
 
   return (
     <>
       <Head>
         <title>Home</title>
-        <meta name="description" content="Seek. The social app you deserve." />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
         <Navbar />

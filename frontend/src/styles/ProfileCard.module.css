@@ -24,6 +24,7 @@
 .profileBg {
     height: 100px;
     position: relative;
+    padding: 2rem 2rem 0rem;
 }
 
 .profileImg {
@@ -148,4 +149,56 @@
     color: var(--light-gray);
     font-size: 1.5rem;
     font-weight: 600;
+}
+
+.profileImgBadgesCard {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 100%;
+    height: 100%;
+    margin-right: 2rem;
+}
+
+.profileImgBadges {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.profileImgBadges svg {
+    border-radius: 4px;
+    border: var(--border);
+    width: 28px;
+    height: 28px;
+    padding: 2px;
+    margin-left: 0.25rem;
+}
+
+.tooltip {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.tooltip:before {
+    content: attr(data-text);
+    position: absolute;
+    top: -5px;
+    transform: translateY(-100%);
+    left: 0%;
+    width: 160px;
+    padding: 10px;
+    border-radius: 10px;
+    background: var(--black);
+    box-shadow: var(--shadow-out);
+    color: var(--light-gray);
+    text-align: center;
+    display: none;
+    z-index: 1;
+}
+
+.tooltip:hover:before {
+    display: block;
 }

@@ -21,8 +21,8 @@ export default function FlovatarCard(
                                 <Image
                                     src={image}
                                     alt="flovatar"
-                                    width={300}
-                                    height={300}
+                                    width={315}
+                                    height={315}
                                 />
                                 : <div className={styles.flovatarCardPlaceholder}>
                                     <FlovatarIcon />

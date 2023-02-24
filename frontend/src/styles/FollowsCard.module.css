@@ -6,9 +6,9 @@
     background-color: var(--black);
     border: var(--border);
     border-radius: 20px;
-    min-width: 300px;
+    min-width: 320px;
     margin-top: 1rem;
-    padding: 1rem;
+    padding: 1rem 1rem 0.5rem;
 }
 
 .followsCardProfile {
@@ -16,6 +16,7 @@
     grid-template-columns: 56px 1fr 92px;
     align-items: center;
     grid-gap: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .followsCardProfileImg {

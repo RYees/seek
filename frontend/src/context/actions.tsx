@@ -19,6 +19,7 @@ import { Unfollow } from "@/cadence/transactions/Unfollow";
 import { CreateProfile } from "@/cadence/transactions/CreateProfile";
 import { EditProfile } from "@/cadence/transactions/EditProfile";
 import { PublishThought } from "@/cadence/transactions/PublishThought";
+import { MintNFT } from "@/cadence/transactions/MintNFT";
 import { ModalContext } from "./modal";
 import { AuthContext } from "./auth";
 
@@ -42,6 +43,7 @@ export const ActionsContext = createContext<IActionsContext>({
     create: async () => { },
     edit: async () => { },
     post: async () => { },
+    claim: async () => { },
     setProfileTxStatus: () => { },
     setProfileTxTracker: () => { },
 });
@@ -81,29 +83,35 @@ export const ActionsProvider = ({ children }: { children: ReactNode }) => {
                         res.statusString === "PENDING"
                         || res.statusString === ""
                         || res.statusString === "EXECUTED") {
-                        setProfileTxStatus({
-                            ...profileTxStatus,
-                            [keyName]: {
-                                ...profileTxStatus[keyName],
-                                status: "LOADING",
-                            }
+                        setProfileTxStatus(prev => {
+                            return {
+                                ...prev,
+                                [keyName]: {
+                                    status: "LOADING",
+                                    error: "",
+                                }
+                            };
                         });
                     } else {
-                        setProfileTxStatus({
-                            ...profileTxStatus,
-                            [keyName]: {
-                                ...profileTxStatus[keyName],
-                                status: "COMPLETED",
-                            }
+                        setProfileTxStatus(prev => {
+                            return {
+                                ...prev,
+                                [keyName]: {
+                                    status: "COMPLETED",
+                                    error: "",
+                                }
+                            };
                         });
                     }
                 } else {
-                    setProfileTxStatus({
-                        ...profileTxStatus,
-                        [keyName]: {
-                            ...profileTxStatus[keyName],
-                            status: "ERROR",
-                        }
+                    setProfileTxStatus(prev => {
+                        return {
+                            ...prev,
+                            [keyName]: {
+                                status: "ERROR",
+                                error: res.errorMessage,
+                            }
+                        };
                     });
 
                     // TODO: alert user with the error
@@ -301,6 +309,32 @@ export const ActionsProvider = ({ children }: { children: ReactNode }) => {
         }
     }
 
+    const claim = async () => {
+        if (!user?.loggedIn) {
+            alert("Please connect wallet first.");
+            return;
+        }
+
+        try {
+            // Mint the NFT and deposit it to the user's address
+            const transactionID = await fcl.mutate({
+                cadence: `${MintNFT}`,
+                proposer: fcl.currentUser,
+                payer: fcl.currentUser,
+                limit: 9999
+            });
+
+            // Open the modal to show the transaction status
+            handleModal({
+                action: "CLAIM",
+                transactionID: transactionID
+            });
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     return (
         <ActionsContext.Provider value={{
             profileTxStatus,
@@ -310,6 +344,7 @@ export const ActionsProvider = ({ children }: { children: ReactNode }) => {
             create,
             edit,
             post,
+            claim,
             setProfileTxStatus,
             setProfileTxTracker,
         }}>

@@ -16,7 +16,7 @@ export default function Edit() {
         if (!user || !user?.loggedIn) {
             router.push("/");
         }
-    }, [user]);
+    }, [user, router]);
 
     return (
         <>

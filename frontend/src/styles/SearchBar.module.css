@@ -1,11 +1,26 @@
 .searchBar {
-    background-color: var(--black);
-    border: 0.5px solid var(--medium-gray);
-    border-radius: 40px;
-    box-shadow: var(--shadow-in);
-    color: var(--light-gray);
-    font-size: 1.1rem;
-    padding: 1rem 2rem;
-    width: 100%;
-    text-align: left;
+    display: flex;
+    align-items: center;
+    padding-top: 2rem;
+}
+
+.searchBarIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: var(--border);
+    border-radius: 10px 0px 0px 10px;
+    color: var(--medium-gray);
+    cursor: pointer;
+    height: 43px;
+    width: 43px;
+}
+
+.searchBarIcon svg {
+    height: 22px;
+    width: 22px;
+}
+
+.searchBar input {
+    border-radius: 0px 10px 10px 0px;
 }

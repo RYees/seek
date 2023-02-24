@@ -9,3 +9,12 @@
     font-size: 0.95rem;
     padding: 0.5rem 1rem;
 }
+
+.editProfileBtn:hover {
+    background: linear-gradient(320deg, #2F3339 15%, #15181C 100%);
+}
+
+.editProfileBtn:active {
+    background: var(--black);
+    box-shadow: var(--shadow-in);
+}

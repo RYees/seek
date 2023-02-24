@@ -1,12 +1,12 @@
 import { QueryPromise } from "@/types";
+import { ENDPOINT } from "@/helpers/constants";
 
 export const getProfileFeed = (account: string) => {
     const controller = new AbortController();
     const signal = controller.signal;
     const promise: Partial<QueryPromise> = new Promise(async (resolve, reject) => {
         try {
-            // TODO: change to real endpoint
-            const response = await fetch(`https://whale-app-2lef9.ondigitalocean.app/feed/${account}`, {
+            const response = await fetch(`${ENDPOINT}/feed/${account}`, {
                 method: "get",
                 signal,
             });
@@ -29,8 +29,7 @@ export const getProfilePosts = (account: string) => {
     const signal = controller.signal;
     const promise: Partial<QueryPromise> = new Promise(async (resolve, reject) => {
         try {
-            // TODO: change to real endpoint
-            const response = await fetch(`https://whale-app-2lef9.ondigitalocean.app/posts/${account}`, {
+            const response = await fetch(`${ENDPOINT}/posts/${account}`, {
                 method: "get",
                 signal,
             });
@@ -53,8 +52,7 @@ export const getProfileRecommended = (account: string) => {
     const signal = controller.signal;
     const promise: Partial<QueryPromise> = new Promise(async (resolve, reject) => {
         try {
-            // TODO: change to real endpoint
-            const response = await fetch(`https://whale-app-2lef9.ondigitalocean.app/recommended/${account}`, {
+            const response = await fetch(`${ENDPOINT}/recommended/${account}`, {
                 method: "get",
                 signal,
             });

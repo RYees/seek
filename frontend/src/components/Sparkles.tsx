@@ -32,7 +32,7 @@ const Sparkles = ({
   useEffect(() => {
     const sparkles = range(2).map(() => generateSparkle(color));
     setSparkles(sparkles);
-  }, []);
+  }, [color]);
 
   useRandomInterval(
     () => {

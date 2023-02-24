@@ -23,11 +23,12 @@ export const FLOW_CONTRACTS: any = {
         FiatToken: "0xa983fecbed621163",
         FindThoughts: "0x35717efbbce11c74",
         FindPack: "0x35717efbbce11c74",
-        Flovatar: "0x0cf264811b95d465",
-        FlovatarComponent: "0x0cf264811b95d465",
-        FlovatarComponentTemplate: "0x0cf264811b95d465",
-        FlovatarPack: "0x0cf264811b95d465",
-        FlovatarMarketplace: "0x0cf264811b95d465",
+        Flovatar: "0x9392a4a7c3f49a0b",
+        FlovatarComponent: "0x9392a4a7c3f49a0b",
+        FlovatarComponentTemplate: "0x9392a4a7c3f49a0b",
+        FlovatarPack: "0x9392a4a7c3f49a0b",
+        FlovatarMarketplace: "0x9392a4a7c3f49a0b",
+        SeekEarlySupporters: "0xf48652f1e8649b72",
     },
     mainnet: {
         FIND: "0x097bafa4e0b48eef",
@@ -58,11 +59,14 @@ export const FLOW_CONTRACTS: any = {
         FlovatarComponentTemplate: "0x921ea449dffec68a",
         FlovatarPack: "0x921ea449dffec68a",
         FlovatarMarketplace: "0x921ea449dffec68a",
+        SeekEarlySupporters: "0xe76dda9e95becda3",
     },
 };
 
 export const MAX_NUM_OF_NFT = 9;
 
-export const NFT_CATALOG = ["Flovatar"]; // TODO: add more
+export const ENDPOINT = "https://whale-app-2lef9.ondigitalocean.app";
 
-export const IFPS_GATEWAY = "https://cf-ipfs.com/ipfs";
+export const IFPS_GATEWAY = "https://cloudflare-ipfs.com/ipfs";
+
+export const MEDIA_QUERY = "(prefers-reduced-motion: no-preference)";

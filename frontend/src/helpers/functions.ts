@@ -1,5 +1,4 @@
-import { INftList } from "@/types";
-import { MAX_NUM_OF_NFT, NFT_CATALOG, IFPS_GATEWAY } from "@/helpers/constants";
+import { IFPS_GATEWAY } from "@/helpers/constants";
 
 export const intlCompactNumFormat = function (
     num: number,
@@ -92,4 +91,19 @@ export const isAbortError = (error: unknown) => {
         return true;
     }
     return false;
+};
+
+export const random = (min: number, max: number) =>
+    Math.floor(Math.random() * (max - min)) + min;
+
+export const range = (start: number, end?: number, step: number = 1) => {
+    let output = [];
+    if (typeof end === "undefined") {
+        end = start;
+        start = 0;
+    }
+    for (let i = start; i < end; i += step) {
+        output.push(i);
+    }
+    return output;
 };

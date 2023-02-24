@@ -11,7 +11,7 @@ export default function Home() {
 
   // Redirect to connect page if the user isn't logged in
   useEffect(() => {
-    if (!user || !user?.loggedIn) {
+    if (!(user && user.loggedIn)) {
       router.push("/connect");
     }
   }, [user]);

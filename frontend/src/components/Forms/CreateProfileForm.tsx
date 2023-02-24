@@ -10,9 +10,11 @@ import LoaderCard from "@/components/Cards/LoaderCard";
 import { IProfileCard } from "@/types";
 import { AuthContext } from "@/context/auth";
 import { ActionsContext } from "@/context/actions";
+import { DataContext } from "@/context/data";
 
 export default function CreateProfileForm() {
     const { userProfile, } = useContext(AuthContext);
+    const { profileHasClaimed, nfts } = useContext(DataContext);
     const {
         profileTxStatus,
         create,
@@ -115,8 +117,10 @@ export default function CreateProfileForm() {
                 <br></br>
                 <ProfileCard
                     {...newProfile}
+                    profileHasClaimed={profileHasClaimed}
                     isProfile={true}
                     hideFollow={true}
+                    hasFlovatar={Boolean(nfts.length > 0)}
                     name={newProfile.name ? newProfile.name : "Profile name"}
                     description={newProfile.description ? newProfile.description : "Get creative with your bio!"}
                 />

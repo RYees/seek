@@ -10,9 +10,11 @@ import LoaderCard from "@/components/Cards/LoaderCard";
 import { IProfileCard } from "@/types";
 import { AuthContext } from "@/context/auth";
 import { ActionsContext } from "@/context/actions";
+import { DataContext } from "@/context/data";
 
 export default function EditProfileForm() {
     const { userProfile, } = useContext(AuthContext);
+    const { profileHasClaimed, nfts } = useContext(DataContext);
     const { profileTxStatus, edit, } = useContext(ActionsContext);
     const [editProfile, setEditProfile] = useState<IProfileCard>({
         name: "",
@@ -94,7 +96,9 @@ export default function EditProfileForm() {
                 <ProfileCard
                     isProfile={true}
                     hideFollow={true}
+                    profileHasClaimed={profileHasClaimed}
                     {...editProfile}
+                    hasFlovatar={Boolean(nfts.length > 0)}
                     name={editProfile.name ? editProfile.name : "Profile name"}
                     description={editProfile.description ? editProfile.description : "Get creative with your bio!"}
                 />

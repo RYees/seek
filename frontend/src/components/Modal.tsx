@@ -21,6 +21,12 @@ export default function Modal() {
 
     // Event listener for the transaction
     useEffect(() => {
+        // Reset transaction status
+        setTxStatus({
+            status: "LOADING",
+            error: ""
+        });
+
         // Check clause
         if (!modalType) return;
         if (!modalType.transactionID) return;

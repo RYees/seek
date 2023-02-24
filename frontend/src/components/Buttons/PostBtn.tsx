@@ -2,7 +2,15 @@ import styles from "@/styles/PostBtn.module.css";
 import { useContext } from "react";
 import { ActionsContext } from "@/context/actions";
 
-export default function PostBtn({ message }: { message: string }) {
+export default function PostBtn(
+    {
+        message,
+        setMessage
+    }: {
+        message: string,
+        setMessage: (message: string) => void
+    }
+) {
     const { post } = useContext(ActionsContext);
 
     const handlePost = () => {
@@ -11,6 +19,7 @@ export default function PostBtn({ message }: { message: string }) {
             return;
         }
         post(message);
+        setMessage("");
     }
 
     return (

@@ -40,7 +40,10 @@ export default function PostMessageCard() {
                             autoCorrect="off"
                         />
                     </div>
-                    <PostBtn message={message} />
+                    <PostBtn
+                        message={message}
+                        setMessage={setMessage}
+                    />
                 </div>
             }
         </>

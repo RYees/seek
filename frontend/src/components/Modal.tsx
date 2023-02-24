@@ -21,9 +21,10 @@ export default function Modal() {
 
     // Event listener for the transaction
     useEffect(() => {
+        // Check clause
         if (!modalType) return;
         if (!modalType.transactionID) return;
-        console.log("Transaction ID: ", modalType.transactionID)
+
         fcl.tx(modalType.transactionID).subscribe((res: any) => {
             if (res.statusCode === 0) {
                 if (

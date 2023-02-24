@@ -13,6 +13,7 @@
     box-shadow: var(--shadow-in);
     width: 316px;
     height: 316px;
+    overflow: hidden;
 }
 
 .flovatarCardImg img {

@@ -60,9 +60,9 @@ func (s *Server) GetRecommemdedAccounts(user string) ([]RecommendedAccount, erro
 
 	query = "select \"following\" as address, concat(count(\"following\"),' follower(s) in common') as reason from follows "
 	query += "where follower in (select \"following\" from follows where follower = ?) and \"following\" not in "
-	query += "(select \"following\" from follows where follower = ?) group by \"following\" ORDER BY RANDOM() limit ? offset ?"
+	query += "(select \"following\" from follows where follower = ? or \"following\" = ?) group by \"following\" ORDER BY RANDOM() limit ? offset ?"
 
-	err := s.dbClient.Raw(query, user, user, limit, offset).Scan(&accounts)
+	err := s.dbClient.Raw(query, user, user, user, limit, offset).Scan(&accounts)
 	if err.Error != nil && err.Error != gorm.ErrRecordNotFound {
 		return accounts, err.Error
 	}

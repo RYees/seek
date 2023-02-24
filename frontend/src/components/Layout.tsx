@@ -8,6 +8,8 @@ import RecommendsCard from "./Cards/RecommendsCard";
 import PostMessageCard from "./Cards/PostMessageCard";
 import LoadingCard from "./Cards/LoadingCard";
 import FeaturedCard from "./Cards/FeaturedCard";
+import ClaimCard from "./Cards/ClaimCard";
+import SearchBar from "./SearchBar";
 import { AuthContext } from "@/context/auth";
 import { DataContext } from "@/context/data";
 
@@ -21,6 +23,9 @@ export default function Layout({ title }: { title: string }) {
         posts,
         recommended,
         featured,
+        hasClaimed,
+        profileHasClaimed,
+        totalSupply,
         setAddress,
         setPath
     } = useContext(DataContext);
@@ -33,16 +38,16 @@ export default function Layout({ title }: { title: string }) {
             res = account;
         }
         return res;
-    }, [user, account]);
+    }, [user, account, router.pathname]);
     const isProfile = useMemo(() => {
         return Boolean(user?.addr === address);
-    }, [user, account]);
+    }, [user, address]);
 
     useEffect(() => {
         if (address) {
             setAddress(address as string);
         }
-    }, [address]);
+    }, [address, setAddress]);
 
     useEffect(() => {
         if (title === "Feed") {
@@ -50,7 +55,7 @@ export default function Layout({ title }: { title: string }) {
         } else {
             setPath(`/${address}`);
         }
-    }, [title]);
+    }, [title, address, setPath]);
 
     return (
         <div className={styles.layout}>
@@ -62,6 +67,9 @@ export default function Layout({ title }: { title: string }) {
                             <ProfileCard
                                 {...profile}
                                 isProfile={isProfile}
+                                profileHasClaimed={profileHasClaimed}
+                                hasFlovatar={Boolean(nfts.length > 0)}
+                                hideBadges={false}
                             />
                             <NFTsCard nfts={nfts} />
                         </>
@@ -90,6 +98,11 @@ export default function Layout({ title }: { title: string }) {
                     }
                 </div>
                 <div className={styles.layoutBot}>
+                    <SearchBar />
+                    {
+                        (user?.loggedIn && !hasClaimed && totalSupply < 1000) &&
+                        <ClaimCard />
+                    }
                     {
                         profile &&
                         featured.length > 0 &&

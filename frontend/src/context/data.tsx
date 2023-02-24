@@ -3,7 +3,8 @@ import {
     createContext,
     useEffect,
     useState,
-    useContext
+    useContext,
+    useMemo,
 } from "react";
 // @ts-ignore
 import * as fcl from "@onflow/fcl";
@@ -22,6 +23,8 @@ import { getFlovatars } from "@/cadence/scripts/getFlovatars";
 import { AuthContext } from "./auth";
 import { getProfileFeed, getProfilePosts, getProfileRecommended } from "@/api";
 import { isAbortError } from "@/helpers/functions";
+import { getTotalSupply } from "@/cadence/scripts/getTotalSupply";
+import { getMintedAddresses } from "@/cadence/scripts/getMintedAddresses";
 
 export const DataContext = createContext<IDataContext>({
     state: {
@@ -35,6 +38,9 @@ export const DataContext = createContext<IDataContext>({
     featured: [],
     address: null,
     path: null,
+    hasClaimed: false,
+    profileHasClaimed: false,
+    totalSupply: 0,
     setAddress: () => { },
     setPath: () => { },
 });
@@ -45,13 +51,16 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
     const { user, trigger } = useContext(AuthContext);
 
     // Featured accounts [hadcoded data]
-    const featuredList: string[] = [
-        "0xdec5369b36230285",
-        "0xf4c99941cd3ae3d5",
-        "0x886f3aeaf848c535",
-        "0x92ba5cba77fc1e87",
-        "0xd9f8bdff66e451de"
-    ];
+    const featuredList = useMemo(() => {
+        return [
+            "0xdec5369b36230285",
+            "0xf4c99941cd3ae3d5",
+            "0x886f3aeaf848c535",
+            "0x92ba5cba77fc1e87",
+            "0xd9f8bdff66e451de",
+            "0x2a0eccae942667be"
+        ];
+    }, []);
 
     // State variables
     const [profile, setProfile] = useState<IProfileCard | null>(null);
@@ -66,6 +75,9 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
     });
     const [address, setAddress] = useState<string | null>(null);
     const [path, setPath] = useState<string | null>(null);
+    const [hasClaimed, setHasClaimed] = useState<boolean>(false);
+    const [profileHasClaimed, setProfileHasClaimed] = useState<boolean>(false);
+    const [totalSupply, setTotalSupply] = useState<number>(0);
 
     // ~~~ Cadence scripts ~~~
     // Get profile and nfts of the account
@@ -74,6 +86,7 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
         setState({ loading: true, error: "" });
         setProfile(null);
         setNfts([]);
+        setProfileHasClaimed(false);
 
         // Check clause
         if (!address) return;
@@ -83,6 +96,14 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
                 // Get profile
                 const res = await fcl.query({
                     cadence: `${getProfile}`,
+                    args: (arg: any, t: any) => [
+                        arg(address, types.Address),
+                    ],
+                });
+
+                // Check if user has claimed the SeekEarlySupporters NFT
+                const claimed = await fcl.query({
+                    cadence: `${getMintedAddresses}`,
                     args: (arg: any, t: any) => [
                         arg(address, types.Address),
                     ],
@@ -110,6 +131,7 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
                 // Update state variables
                 setProfile(res);
                 setNfts([...nftDetails]);
+                setProfileHasClaimed(claimed);
                 setState({
                     loading: false,
                     error: ""
@@ -118,6 +140,7 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
                 console.error(err);
                 setProfile(null);
                 setNfts([]);
+                setProfileHasClaimed(false);
                 setState({
                     loading: false,
                     error: "Error: Something went wrong. Please try again."
@@ -272,10 +295,6 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
         // Reset
         setFeatured([]);
 
-        // Check clause
-        if (!user || !user.addr) return;
-        if (featuredList.length === 0) return;
-
         async function getProfiles() {
             const promises: any[] = [];
             featuredList.forEach(async (address) => {
@@ -297,7 +316,65 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
         }
 
         getProfiles();
-    }, [user]);
+    }, [featuredList]);
+
+    // Check if user has claimed the SeekEarlySupporters NFT
+    useEffect(() => {
+        // Reset
+        setHasClaimed(false);
+
+        // Check clause
+        if (!user || !user.addr) return;
+
+        async function checkHasClaimed() {
+            if (!user?.addr) return;
+
+            try {
+                // Check if user has claimed the SeekEarlySupporters NFT
+                const claimed = await fcl.query({
+                    cadence: `${getMintedAddresses}`,
+                    args: (arg: any, t: any) => [
+                        arg(user.addr, types.Address),
+                    ],
+                });
+
+                if (claimed) {
+                    setHasClaimed(true);
+                    return;
+                }
+            } catch (error) {
+                console.error(error);
+                setHasClaimed(false);
+            }
+        }
+
+        checkHasClaimed();
+    }, [user, trigger]);
+
+    // Check if user has claimed the SeekEarlySupporters NFT
+    useEffect(() => {
+        // Reset
+        setTotalSupply(1000);
+
+        async function getSupply() {
+            if (!user?.addr) return;
+
+            try {
+                // Check total number of NFTs owned by user
+                const totalSupply = await fcl.query({
+                    cadence: `${getTotalSupply}`,
+                });
+
+                // Update state variables
+                setTotalSupply(totalSupply);
+            } catch (error) {
+                console.error(error);
+                setTotalSupply(1000);
+            }
+        }
+
+        getSupply();
+    }, [user?.addr]);
 
     return (
         <DataContext.Provider value={{
@@ -309,8 +386,11 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
             featured,
             address,
             path,
+            hasClaimed,
+            profileHasClaimed,
+            totalSupply,
             setAddress,
-            setPath
+            setPath,
         }}>
             {children}
         </DataContext.Provider>

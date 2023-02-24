@@ -21,6 +21,7 @@ export interface IActionsContext {
     create: (name: string) => void;
     edit: (name: string, description: string, avatar: string) => void;
     post: (message: string) => void;
+    claim: () => void;
     setProfileTxStatus: (status: IProfileTxStatus) => void;
     setProfileTxTracker: (tx: IProfileTxTracker) => void;
 }
@@ -34,6 +35,9 @@ export interface IDataContext {
     featured: IProfileCard[];
     address: string | null;
     path: string | null;
+    hasClaimed: boolean;
+    profileHasClaimed: boolean;
+    totalSupply: number;
     setAddress: (address: string | null) => void;
     setPath: (path: string | null) => void;
 }
@@ -49,7 +53,10 @@ export interface IProfileCard {
     findName: string;
     isProfile?: boolean;
     hideFollow?: boolean;
+    hideBadges?: boolean;
     reason?: string;
+    profileHasClaimed?: boolean;
+    hasFlovatar?: boolean;
 }
 
 export interface INFTCard {
@@ -122,7 +129,7 @@ export interface IProfileTxTracker {
 }
 
 export interface IModalType {
-    action: "FOLLOW" | "UNFOLLOW" | "CREATE" | "EDIT" | "POST";
+    action: "FOLLOW" | "UNFOLLOW" | "CREATE" | "EDIT" | "POST" | "CLAIM";
     transactionID: string;
 }
 

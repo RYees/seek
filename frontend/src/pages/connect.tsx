@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import styles from "@/styles/Connect.module.css";
@@ -23,12 +23,14 @@ export default function Connect() {
     });
 
     // Featured users [Hardcoded data]
-    const [list, setList] = useState<string[]>([
-        "0x886f3aeaf848c535",
-        "0x92ba5cba77fc1e87",
-        "0x2a0eccae942667be",
-        "0x2022205b2cade6b0",
-    ]);
+    const list = useMemo(() => {
+        return [
+            "0x886f3aeaf848c535",
+            "0x92ba5cba77fc1e87",
+            "0x2a0eccae942667be",
+            "0x2022205b2cade6b0",
+        ];
+    }, []);
     const [profiles, setProfiles] = useState<IProfileCard[]>([]);
 
     // Redirect to home if user is logged in and has a profile
@@ -36,15 +38,13 @@ export default function Connect() {
         if (user && user?.loggedIn) {
             router.push("/");
         }
-    }, [user]);
+    }, [user, router]);
 
     // Get profiles to display users
     useEffect(() => {
         // Reset
         setProfiles([]);
         setState({ loading: true, error: "" });
-
-        if (list.length === 0) return;
 
         async function getProfiles() {
             const promises: any[] = [];
@@ -91,7 +91,7 @@ export default function Connect() {
                 <Navbar />
                 <div className={styles.hero}>
                     <div className={styles.heroWrapper}>
-                        <h1>Seek. The social app that you deserve.</h1>
+                        <h1>The social app that you deserve.</h1>
                         <br></br>
                         <p>Join your Flow friends now!</p>
                         <br></br>
@@ -119,6 +119,7 @@ export default function Connect() {
                                     <ProfileCard
                                         key={profile.address}
                                         {...profile}
+                                        hideBadges={true}
                                     />
                                 ))
                             )

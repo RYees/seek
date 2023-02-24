@@ -32,13 +32,13 @@ export default function Modal() {
                     || res.statusString === ""
                     || res.statusString === "EXECUTED") {
                     setTxStatus({
-                        ...txStatus,
                         status: "LOADING",
+                        error: ""
                     });
                 } else {
                     setTxStatus({
-                        ...txStatus,
                         status: "COMPLETED",
+                        error: ""
                     });
 
                     // Trigger a profile update
@@ -49,8 +49,8 @@ export default function Modal() {
                 }
             } else {
                 setTxStatus({
-                    ...txStatus,
                     status: "ERROR",
+                    error: res.errorMessage
                 });
 
                 // Trigger a profile update

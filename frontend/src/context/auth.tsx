@@ -39,16 +39,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [userProfile, setUserProfile] = useState<IUserProfile | null>(null);
     const [trigger, setTrigger] = useState<string>("");
 
-    // Event listener: user changes
+    // Listen to user changes
     useEffect(() => {
-        // Clear storage
-        window.sessionStorage.clear();
-
-        // Reset user
-        setUser(null);
-        setUserProfile(null);
-
-        // Subscribe to user changes
         fcl.currentUser().subscribe(setUser);
     }, []);
 

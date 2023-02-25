@@ -88,7 +88,7 @@ export default function Connect() {
                 <Navbar />
                 <div className={styles.hero}>
                     <div className={styles.heroWrapper}>
-                        <h1>The social app that you deserve.</h1>
+                        <h1>The social media app that you deserve.</h1>
                         <br></br>
                         <p>Join your Flow friends now!</p>
                         <br></br>

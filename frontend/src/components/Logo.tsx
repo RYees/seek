@@ -7,7 +7,7 @@ export default function Logo() {
         <Link href="/">
             <div className={styles.logo}>
                 <BorderIcon />
-                <span>seek</span>
+                <span>Seek</span>
             </div>
         </Link>
     );

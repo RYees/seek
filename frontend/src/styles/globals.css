@@ -91,11 +91,11 @@ h3 {
 }
 
 h1 {
-  font-size: 3.4rem;
+  font-size: 2.8rem;
 }
 
 h2 {
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   font-weight: 400;
 }
 
@@ -132,4 +132,18 @@ input {
 
 input::placeholder {
   color: var(--medium-gray);
+}
+
+@media (min-width: 798px) {
+  h1 {
+    font-size: 3.4rem;
+  }
+
+  h2 {
+    font-size: 2.4rem;
+  }
+
+  h3 {
+    font-size: 1.9rem;
+  }
 }

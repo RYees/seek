@@ -104,7 +104,7 @@ export default function ProfileCard({
                                     profileHasClaimed &&
                                     <span
                                         className={styles.tooltip}
-                                        data-text="seek early supporter NFT owner."
+                                        data-text="Seek early supporter NFT owner."
                                     >
                                         <BorderIcon />
                                     </span>

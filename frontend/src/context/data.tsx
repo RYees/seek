@@ -356,6 +356,9 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
         // Reset
         setTotalSupply(1000);
 
+        // Check clause
+        if (!user || !user.addr) return;
+
         async function getSupply() {
             if (!user?.addr) return;
 
@@ -374,7 +377,7 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
         }
 
         getSupply();
-    }, [user?.addr]);
+    }, [user]);
 
     return (
         <DataContext.Provider value={{

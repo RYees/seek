@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import Link from "next/link";
 import styles from "@/styles/Flovatar.module.css";
 import Head from "next/head";
 import Navbar from "@/components/Navbar";
@@ -6,7 +7,7 @@ import { DataContext } from "@/context/data";
 import FlovatarCard from "@/components/Cards/FlovatarCard";
 
 export default function Flovatar() {
-    const { nfts } = useContext(DataContext);
+    const { profile, nfts } = useContext(DataContext);
 
     return (
         <>
@@ -16,6 +17,15 @@ export default function Flovatar() {
             <main>
                 <Navbar />
                 <br></br><br></br>
+                <Link href={`/${profile?.address}`}>
+                    <h2 className={styles.flovatarAddressLink}>
+                        {
+                            profile?.name
+                                ? profile?.name
+                                : profile?.address
+                        }&apos;s
+                    </h2>
+                </Link>
                 <h2>Flovatar collection</h2>
                 <br></br><br></br>
                 <button

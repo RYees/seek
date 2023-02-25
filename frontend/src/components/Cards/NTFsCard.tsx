@@ -19,7 +19,7 @@ export default function NFTsCard(
                         <p>Flovatars</p>
                         {
                             address &&
-                            <Link href="/flovatar">
+                            <Link href={`/flovatar/${address}`}>
                                 <div>See all</div>
                             </Link>
                         }

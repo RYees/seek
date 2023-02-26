@@ -12,6 +12,7 @@ import ClaimCard from "./Cards/ClaimCard";
 import SearchBar from "./SearchBar";
 import { AuthContext } from "@/context/auth";
 import { DataContext } from "@/context/data";
+import FloatBtn from "./Buttons/FloatBtn";
 
 export default function Layout({ title }: { title: string }) {
     const router = useRouter();
@@ -127,6 +128,10 @@ export default function Layout({ title }: { title: string }) {
                     }
                 </div>
             </div>
+            {
+                (user?.loggedIn && !hasClaimed && totalSupply < 1000) &&
+                <FloatBtn />
+            }
         </div>
     );
 }

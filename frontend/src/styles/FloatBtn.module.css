@@ -1,0 +1,24 @@
+.floatBtn {
+    background-color: var(--black);
+    box-shadow: var(--shadow-out);
+    border: var(--border);
+    border-radius: 10px;
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    bottom: 80px;
+    right: 1rem;
+    padding: 0.5rem;
+}
+
+.floatBtn div {
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem;
+}
+
+.floatBtn svg {
+    width: 100%;
+    height: 100%;
+    color: var(--medium-gray);
+}

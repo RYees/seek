@@ -27,6 +27,15 @@ func (s *Server) GetFollowedThoughts(user string) ([]model.Thought, error) {
 		return thought, err.Error
 	}
 
+	// if the query returns no results, then we get the latest thoughts
+	if len(thought) == 0 {
+		query = "SELECT * FROM public.thoughts order by creation_date desc limit ? offset ?"
+		err := s.dbClient.Raw(query, limit, offset).Scan(&thought)
+		if err.Error != nil && err.Error != gorm.ErrRecordNotFound {
+			return thought, err.Error
+		}
+	}
+
 	return thought, nil
 }
 

@@ -204,6 +204,24 @@
     display: block;
 }
 
+.profileFlovatarLink {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: #B072FF;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    text-decoration: underline;
+}
+
+.profileFlovatarLink:hover {
+    text-decoration: none;
+}
+
+.profileFlovatarLink svg {
+    margin-right: 0.25rem;
+}
+
 @media (min-width: 768px) {
     .profileContainer {
         padding-top: 2rem;
@@ -255,5 +273,9 @@
         top: -5px;
         transform: translateY(-100%);
         left: 0%;
+    }
+
+    .profileFlovatarLink {
+        display: none;
     }
 }

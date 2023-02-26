@@ -157,6 +157,14 @@ export default function ProfileCard({
                         }
                     </div>
                     <div className={styles.profileBio}>{description}</div>
+                    {
+                        hasFlovatar &&
+                        <Link href={`/flovatar/${address}`}>
+                            <div className={styles.profileFlovatarLink}>
+                                <span>view Flovatars</span>
+                            </div>
+                        </Link>
+                    }
                 </div>
                 <div className={styles.profileSocial}>
                     <button

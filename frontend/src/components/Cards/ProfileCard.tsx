@@ -161,7 +161,7 @@ export default function ProfileCard({
                         hasFlovatar &&
                         <Link href={`/flovatar/${address}`}>
                             <div className={styles.profileFlovatarLink}>
-                                <span>view Flovatars</span>
+                                <span>View Flovatars</span>
                             </div>
                         </Link>
                     }

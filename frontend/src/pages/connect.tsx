@@ -15,7 +15,7 @@ import * as fcl from "@onflow/fcl";
 import * as types from "@onflow/types";
 
 export default function Connect() {
-    const { user, login } = useContext(AuthContext);
+    const { user, userProfile, login } = useContext(AuthContext);
     const router = useRouter();
     const [state, setState] = useState({
         loading: true,
@@ -35,8 +35,15 @@ export default function Connect() {
 
     // Redirect to home if user is logged in and has a profile
     useEffect(() => {
-        if (user && user?.loggedIn) {
+        if (user && user?.loggedIn && userProfile) {
             router.push("/");
+        }
+    }, [user, router]);
+
+    // Redirect to create if user is logged in and doesnt have a profile
+    useEffect(() => {
+        if (user && user?.loggedIn && !userProfile) {
+            router.push("/create");
         }
     }, [user, router]);
 
@@ -83,6 +90,13 @@ export default function Connect() {
         <>
             <Head>
                 <title>Connect</title>
+                <meta name="language" content="en" />
+                <meta name="theme-color" content="#24272C" />
+                <meta charSet="utf-8" />
+                <meta name="keywords" content="social flow blockchain" />
+                <meta name="description" content="Seek is a decentralized social media platform that enables users to own their social identity and social capital." />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <link rel="icon" href="/favicon.ico" />
             </Head>
             <main className={styles.main}>
                 <Navbar />

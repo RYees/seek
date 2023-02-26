@@ -3,7 +3,7 @@
     grid-template-columns: 1fr;
     max-width: 1480px;
     margin: 0 auto;
-    padding: 0rem 1rem 6rem;
+    padding: 1rem 1rem 6rem;
 }
 
 .layoutTop {
@@ -27,7 +27,6 @@
     .layoutWrapper {
         grid-template-columns: auto 2fr;
         grid-gap: 2rem;
-        padding: 1rem 1rem 6rem;
     }
 
     .layoutMid {

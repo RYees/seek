@@ -4,10 +4,13 @@
     border-radius: 10px;
     box-shadow: var(--shadow-out);
     display: flex;
+    align-items: center;
+    justify-content: center;
     color: var(--light-gray);
     cursor: pointer;
     font-size: 1.2rem;
-    padding: 1rem;
+    width: 54px;
+    height: 54px;
 }
 
 .connectBtn svg {
@@ -24,9 +27,6 @@
         border-radius: 40px;
         width: 260px;
         height: 54px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
 
     .connectBtn svg {

@@ -27,7 +27,7 @@ export default function PostBtn(
             className={styles.postBtn}
             onClick={handlePost}
         >
-            Post
+            POST
         </button>
     );
 }

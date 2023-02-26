@@ -17,7 +17,7 @@
     align-items: center;
 }
 
-.navbarProfileInfo {
+.navbarProfileWrapper {
     cursor: default;
     position: relative;
 }
@@ -66,7 +66,7 @@
     position: absolute;
     top: 100%;
     right: 0;
-    width: 180px;
+    width: 196px;
     padding: 1rem;
     text-align: left;
     z-index: 2;
@@ -76,7 +76,7 @@
     border: 0.5px solid transparent;
     color: var(--light-gray);
     font-size: 1rem;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1rem;
 }
 
 .navbarPopoverOption a,

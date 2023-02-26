@@ -105,14 +105,25 @@ export default function Layout({ title }: { title: string }) {
                                         />
                                     </div>
                                     : <div className={styles.layoutMessage}>
+                                        <div className={styles.layoutMessageSearch}>
+                                            {
+                                                !profile &&
+                                                <SearchBar />
+                                            }
+                                        </div>
+                                        <br></br>
                                         <p>User doesn&apos;t have a profile yet.</p>
                                     </div>
                             )
                     }
                 </div>
                 <div className={styles.layoutBot}>
-                    <SearchBar />
                     {
+                        profile &&
+                        <SearchBar />
+                    }
+                    {
+                        profile &&
                         (user?.loggedIn && !hasClaimed && totalSupply < 1000) &&
                         <ClaimCard />
                     }
@@ -129,6 +140,7 @@ export default function Layout({ title }: { title: string }) {
                 </div>
             </div>
             {
+                profile &&
                 (user?.loggedIn && !hasClaimed && totalSupply < 1000) &&
                 <FloatBtn />
             }

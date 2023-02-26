@@ -1,7 +1,7 @@
 .searchBar {
     display: flex;
     align-items: center;
-    padding-top: 2rem;
+    margin: 0 1rem;
 }
 
 .searchBarIcon {
@@ -9,11 +9,11 @@
     align-items: center;
     justify-content: center;
     border: var(--border);
-    border-radius: 10px 0px 0px 10px;
+    border-radius: 0px 10px 10px 0px;
     color: var(--medium-gray);
     cursor: pointer;
-    height: 43px;
-    width: 43px;
+    height: 50px;
+    width: 50px;
 }
 
 .searchBarIcon svg {
@@ -22,5 +22,14 @@
 }
 
 .searchBar input {
-    border-radius: 0px 10px 10px 0px;
+    border-radius: 10px 0px 0px 10px;
+    height: 50px;
+    padding: 0.5rem 1rem;
+}
+
+@media (min-width: 768px) {
+    .searchBar {
+        margin: 0;
+        padding-top: 2rem;
+    }
 }

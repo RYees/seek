@@ -26,7 +26,7 @@
 
 .createProfileFormStep {
     display: grid;
-    grid-template-columns: minmax(400px, 460px) 26px;
+    grid-template-columns: 1fr 26px;
     margin-bottom: 4rem;
 }
 
@@ -56,10 +56,14 @@
     margin-bottom: 0.5rem;
 }
 
-@media (min-width: 798px) {
+@media (min-width: 768px) {
     .createProfileForm {
         grid-template-columns: 1fr minmax(300px, 320px);
         grid-gap: 4rem;
+    }
+
+    .createProfileFormStep {
+        grid-template-columns: minmax(400px, 460px) 26px;
     }
 
     .createProfileFormPreview {

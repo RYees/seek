@@ -76,6 +76,18 @@ export default function Layout({ title }: { title: string }) {
                     }
                 </div>
                 <div className={styles.layoutMid}>
+                    <div className={styles.layoutMidProfileMobile}>
+                        {
+                            profile &&
+                            <ProfileCard
+                                {...profile}
+                                isProfile={isProfile}
+                                profileHasClaimed={profileHasClaimed}
+                                hasFlovatar={Boolean(nfts.length > 0)}
+                                hideBadges={false}
+                            />
+                        }
+                    </div>
                     {
                         (state.loading || state.error)
                             ? <LoadingCard

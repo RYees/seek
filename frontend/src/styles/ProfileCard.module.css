@@ -1,5 +1,5 @@
 .profileContainer {
-    padding-top: 2rem;
+    width: 100%;
     text-align: left;
 }
 
@@ -8,8 +8,7 @@
     box-shadow: var(--shadow-out);
     border: var(--border);
     border-radius: 20px;
-    min-width: 300px;
-    max-width: 320px;
+    min-width: 100%;
     padding-bottom: 1rem;
 }
 
@@ -22,27 +21,28 @@
 }
 
 .profileBg {
-    height: 100px;
+    display: grid;
+    grid-template-columns: 66px 1fr;
+    height: calc(66px + 1rem);
     position: relative;
-    padding: 2rem 2rem 0rem;
+    padding: 1rem 2rem 0rem;
 }
 
 .profileImg {
     background-color: var(--black);
     border: var(--border);
-    border-radius: 10px;
+    border-radius: 4px;
     box-shadow: var(--shadow-in);
-    width: 132px;
-    height: 132px;
-    padding: 16px;
-    position: absolute;
-    top: -2rem;
-    left: 2rem;
+    width: 66px;
+    height: 66px;
+    padding: 8px;
 }
 
 .profileImg img {
-    border-radius: 10px;
+    border-radius: 4px;
     object-fit: cover;
+    width: 100%;
+    height: 100%;
 }
 
 .profileImgPlaceholder {
@@ -60,18 +60,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .profileDetails div:first-child {
     color: var(--white);
     font-size: 1.5rem;
     font-weight: 600;
-}
-
-.profileHandle {
-    font-size: 1rem;
-    color: var(--medium-gray);
 }
 
 .profileDetails a {
@@ -82,7 +77,6 @@
 .profileBio {
     font-size: 1rem;
     color: var(--medium-gray);
-    margin-bottom: 1rem;
 }
 
 .profileSocial {
@@ -90,7 +84,6 @@
     justify-content: space-evenly;
     align-items: center;
     padding: 0.5rem 1rem;
-    margin-bottom: 1rem;
 }
 
 .profileFollowers,
@@ -127,7 +120,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 2;
+    z-index: 4;
 }
 
 .profileCardModalWrapper {
@@ -171,8 +164,16 @@
     border: var(--border);
     width: 28px;
     height: 28px;
-    padding: 2px;
+    padding: 6px;
     margin-left: 0.25rem;
+}
+
+.profileCardFindBadge span svg {
+    padding: 6px 4px;
+}
+
+.profileCardFlovatarBadge span svg {
+    padding: 5px 2px 5px 5px;
 }
 
 .tooltip {
@@ -187,7 +188,7 @@
     position: absolute;
     top: -5px;
     transform: translateY(-100%);
-    left: 0%;
+    right: 0%;
     width: 160px;
     padding: 10px;
     border-radius: 10px;
@@ -201,4 +202,80 @@
 
 .tooltip:hover:before {
     display: block;
+}
+
+.profileFlovatarLink {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: var(--purple);
+    font-size: 0.95rem;
+    margin-top: 0.75rem;
+    text-decoration: underline;
+}
+
+.profileFlovatarLink:hover {
+    text-decoration: none;
+}
+
+.profileFlovatarLink svg {
+    margin-right: 0.25rem;
+}
+
+@media (min-width: 768px) {
+    .profileContainer {
+        padding-top: 2rem;
+    }
+
+    .profileCard {
+        min-width: 300px;
+        max-width: 320px;
+    }
+
+    .profileBg {
+        display: block;
+        height: 100px;
+        padding: 2rem 2rem 0rem;
+    }
+
+    .profileImg {
+        border-radius: 10px;
+        width: 132px;
+        height: 132px;
+        padding: 16px;
+        position: absolute;
+        top: -2rem;
+        left: 2rem;
+    }
+
+    .profileImg img {
+        border-radius: 10px;
+    }
+
+    .profileCard {
+        max-width: 320px;
+    }
+
+    .profileBio {
+        margin-bottom: 1rem;
+    }
+
+    .profileSocial {
+        margin-bottom: 1rem;
+    }
+
+    .profileFollow {
+        margin-bottom: 2rem;
+    }
+
+    .tooltip:before {
+        position: absolute;
+        top: -5px;
+        transform: translateY(-100%);
+        left: 0%;
+    }
+
+    .profileFlovatarLink {
+        display: none;
+    }
 }

@@ -36,7 +36,7 @@ export default function RecommendsCard(
                                         <div>{
                                             profile.findName ?
                                                 `${String(profile.findName + ".find")}`
-                                                : `${profile.address.slice(0, 6)}...${profile.address.slice(-6)}`
+                                                : `${profile.address.slice(0, 4)}...${profile.address.slice(-4)}`
                                         }</div>
                                     </Link>
                                 </div>

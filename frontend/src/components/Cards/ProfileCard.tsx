@@ -99,35 +99,43 @@ export default function ProfileCard({
                     {
                         !hideBadges &&
                         <div className={styles.profileImgBadgesCard}>
-                            <div className={styles.profileImgBadges}>
-                                {
-                                    profileHasClaimed &&
-                                    <span
-                                        className={styles.tooltip}
-                                        data-text="Seek early supporter NFT owner."
-                                    >
-                                        <BorderIcon />
-                                    </span>
-                                }
-                                {
-                                    Boolean(findName) &&
-                                    <span
-                                        className={styles.tooltip}
-                                        data-text=".find name owner."
-                                    >
-                                        <FindIcon />
-                                    </span>
-                                }
-                                {
-                                    hasFlovatar &&
-                                    <div
-                                        className={styles.tooltip}
-                                        data-text="Flovatar NFT owner."
-                                    >
-                                        <FlovatarIcon />
-                                    </div>
-                                }
-                            </div>
+                            {
+                                !hideFollow &&
+                                <div className={styles.profileImgBadges}>
+                                    {
+                                        profileHasClaimed &&
+                                        <span
+                                            className={styles.tooltip}
+                                            data-text="Seek early supporter NFT owner."
+                                        >
+                                            <BorderIcon />
+                                        </span>
+                                    }
+                                    {
+                                        Boolean(findName) &&
+                                        <div className={styles.profileCardFindBadge}>
+                                            <span
+                                                className={styles.tooltip}
+                                                data-text=".find name owner."
+                                            >
+                                                <FindIcon />
+                                            </span>
+                                        </div>
+                                    }
+                                    {
+                                        hasFlovatar &&
+                                        <div className={styles.profileCardFlovatarBadge}>
+                                            <span
+                                                className={styles.tooltip}
+                                                data-text="Flovatar NFT owner."
+                                            >
+                                                <FlovatarIcon />
+                                            </span>
+                                        </div>
+                                    }
+                                </div>
+                            }
+
                         </div>
                     }
                 </div>
@@ -136,7 +144,7 @@ export default function ProfileCard({
                         <div className={styles.profileDetails}>
                             <Link href={`/${address}`}>
                                 <div>{name}</div>
-                                <div>{findName ? `${String(findName + ".find")}` : `${address.slice(0, 6)}...${address.slice(-6)}`}</div>
+                                <div>{findName ? `${String(findName + ".find")}` : `${address.slice(0, 4)}...${address.slice(-4)}`}</div>
                             </Link>
                         </div>
                         {
@@ -149,6 +157,14 @@ export default function ProfileCard({
                         }
                     </div>
                     <div className={styles.profileBio}>{description}</div>
+                    {
+                        hasFlovatar &&
+                        <Link href={`/flovatar/${address}`}>
+                            <div className={styles.profileFlovatarLink}>
+                                <span>View Flovatars</span>
+                            </div>
+                        </Link>
+                    }
                 </div>
                 <div className={styles.profileSocial}>
                     <button

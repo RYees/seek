@@ -26,8 +26,9 @@
 
 .flovatarAddressLink {
     color: var(--green);
+    text-decoration: underline;
 }
 
 .flovatarAddressLink:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }

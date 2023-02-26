@@ -12,6 +12,7 @@
   --blue: #50E8DA;
   --green: #C3FB90;
   --red: #ac061c;
+  --purple: #B072FF;
   --gradient-bg: linear-gradient(90deg, #50E8DA, #C3FB90);
   --shadow-out:
     inset 1px 1px 10px rgba(0, 0, 0, 0.05),
@@ -134,7 +135,7 @@ input::placeholder {
   color: var(--medium-gray);
 }
 
-@media (min-width: 798px) {
+@media (min-width: 768px) {
   h1 {
     font-size: 3.4rem;
   }

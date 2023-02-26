@@ -30,7 +30,7 @@ export default function PostsCard({ posts, title }: { posts: IPostCard[], title:
                                 <div className={styles.postCardInfo}>
                                     <Link href={`/${post?.address}`}>
                                         <div className={styles.postCardName}>{post?.name}</div>
-                                        <div>{`${post.address.slice(0, 6)}...${post.address.slice(-6)}`}</div>
+                                        <div>{`${post.address.slice(0, 4)}...${post.address.slice(-4)}`}</div>
                                     </Link>
                                 </div>
                                 <div className={styles.postCardTime}>{timeSince(new Date(post.creation_date).getTime())}</div>

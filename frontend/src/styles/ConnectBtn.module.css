@@ -19,10 +19,14 @@
     display: none;
 }
 
-@media (min-width: 798px) {
+@media (min-width: 768px) {
     .connectBtn {
         border-radius: 40px;
-        padding: 1rem 2rem;
+        width: 280px;
+        padding: 1rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .connectBtn svg {

@@ -134,7 +134,7 @@ input::placeholder {
   color: var(--medium-gray);
 }
 
-@media (min-width: 798px) {
+@media (min-width: 768px) {
   h1 {
     font-size: 3.4rem;
   }

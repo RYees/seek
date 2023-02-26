@@ -10,6 +10,7 @@ import SettingsIcon from "./Icons/SettingsIcon";
 import { parseURL } from "@/helpers/functions";
 import { AuthContext } from "@/context/auth";
 import { useRouter } from "next/router";
+import SearchBar from "./SearchBar";
 
 export default function Navbar() {
     const router = useRouter();
@@ -46,6 +47,9 @@ export default function Navbar() {
                         </>
                     }
                 </div>
+                <div className={styles.navbarSearchbar}>
+                    <SearchBar />
+                </div>
                 {
                     user?.loggedIn
                         ? <div className={styles.navbarProfile}>
@@ -70,7 +74,7 @@ export default function Navbar() {
                                         </div>
                                         <div className={styles.navbarProfileDetails}>
                                             <div className={styles.navbarProfileInfoName}>{userProfile.name}</div>
-                                            <div className={styles.navbarProfileInfoAddress}>{`${userProfile.address.slice(0, 6)}...${userProfile.address.slice(-6)}`}</div>
+                                            <div className={styles.navbarProfileInfoAddress}>{`${userProfile.address.slice(0, 4)}...${userProfile.address.slice(-4)}`}</div>
                                         </div>
                                         {
                                             showPopover &&

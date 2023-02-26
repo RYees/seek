@@ -32,12 +32,6 @@ export default function SearchBar() {
 
     return (
         <div className={styles.searchBar}>
-            <div
-                className={styles.searchBarIcon}
-                onClick={handleOnClick}
-            >
-                <SearchIcon />
-            </div>
             <input
                 onChange={handleOnChange}
                 onKeyDown={handleOnKeyDown}
@@ -47,6 +41,12 @@ export default function SearchBar() {
                 autoCorrect="off"
                 spellCheck="false"
             ></input>
+            <div
+                className={styles.searchBarIcon}
+                onClick={handleOnClick}
+            >
+                <SearchIcon />
+            </div>
         </div>
     );
 }

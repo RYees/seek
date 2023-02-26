@@ -15,7 +15,7 @@
     font-weight: 600;
 }
 
-@media (min-width: 798px) {
+@media (min-width: 768px) {
     .logo span {
         display: block;
     }

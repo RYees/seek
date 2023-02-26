@@ -111,20 +111,24 @@ export default function ProfileCard({
                                 }
                                 {
                                     Boolean(findName) &&
-                                    <span
-                                        className={styles.tooltip}
-                                        data-text=".find name owner."
-                                    >
-                                        <FindIcon />
-                                    </span>
+                                    <div className={styles.profileCardFindBadge}>
+                                        <span
+                                            className={styles.tooltip}
+                                            data-text=".find name owner."
+                                        >
+                                            <FindIcon />
+                                        </span>
+                                    </div>
                                 }
                                 {
                                     hasFlovatar &&
-                                    <div
-                                        className={styles.tooltip}
-                                        data-text="Flovatar NFT owner."
-                                    >
-                                        <FlovatarIcon />
+                                    <div className={styles.profileCardFlovatarBadge}>
+                                        <span
+                                            className={styles.tooltip}
+                                            data-text="Flovatar NFT owner."
+                                        >
+                                            <FlovatarIcon />
+                                        </span>
                                     </div>
                                 }
                             </div>
@@ -136,7 +140,7 @@ export default function ProfileCard({
                         <div className={styles.profileDetails}>
                             <Link href={`/${address}`}>
                                 <div>{name}</div>
-                                <div>{findName ? `${String(findName + ".find")}` : `${address.slice(0, 6)}...${address.slice(-6)}`}</div>
+                                <div>{findName ? `${String(findName + ".find")}` : `${address.slice(0, 4)}...${address.slice(-4)}`}</div>
                             </Link>
                         </div>
                         {

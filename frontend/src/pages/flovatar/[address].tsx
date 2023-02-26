@@ -17,15 +17,18 @@ export default function Flovatar() {
             <main>
                 <Navbar />
                 <br></br><br></br>
-                <Link href={`/${profile?.address}`}>
-                    <h2 className={styles.flovatarAddressLink}>
-                        {
-                            profile?.name
-                                ? profile?.name
-                                : profile?.address
-                        }&apos;s
-                    </h2>
-                </Link>
+                {
+                    profile?.address &&
+                    <Link href={`/${profile?.address}`}>
+                        <h2 className={styles.flovatarAddressLink}>
+                            {
+                                profile?.name
+                                    ? profile?.name
+                                    : profile?.address
+                            }&apos;s
+                        </h2>
+                    </Link>
+                }
                 <h2>Flovatar collection</h2>
                 <br></br><br></br>
                 <button

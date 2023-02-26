@@ -9,7 +9,8 @@
     color: var(--light-gray);
     cursor: pointer;
     font-size: 1.2rem;
-    width: 54px;
+    min-width: 54px;
+    max-width: 54px;
     height: 54px;
 }
 
@@ -25,7 +26,8 @@
 @media (min-width: 768px) {
     .connectBtn {
         border-radius: 40px;
-        width: 260px;
+        min-width: 200px;
+        max-width: 200px;
         height: 54px;
     }
 

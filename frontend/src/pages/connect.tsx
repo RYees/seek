@@ -15,7 +15,7 @@ import * as fcl from "@onflow/fcl";
 import * as types from "@onflow/types";
 
 export default function Connect() {
-    const { user, userProfile, login } = useContext(AuthContext);
+    const { user, login } = useContext(AuthContext);
     const router = useRouter();
     const [state, setState] = useState({
         loading: true,
@@ -33,17 +33,10 @@ export default function Connect() {
     }, []);
     const [profiles, setProfiles] = useState<IProfileCard[]>([]);
 
-    // Redirect to home if user is logged in and has a profile
+    // Redirect to home if user is logged in
     useEffect(() => {
-        if (user && user?.loggedIn && userProfile) {
+        if (user && user?.loggedIn) {
             router.push("/");
-        }
-    }, [user, router]);
-
-    // Redirect to create if user is logged in and doesnt have a profile
-    useEffect(() => {
-        if (user && user?.loggedIn && !userProfile) {
-            router.push("/create");
         }
     }, [user, router]);
 

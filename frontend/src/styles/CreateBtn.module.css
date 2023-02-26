@@ -1,7 +1,7 @@
 .createBtn {
     background-color: var(--black);
     border: var(--border);
-    border-radius: 50%;
+    border-radius: 10px;
     box-shadow: var(--shadow-out);
     display: flex;
     color: var(--light-gray);

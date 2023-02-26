@@ -99,39 +99,43 @@ export default function ProfileCard({
                     {
                         !hideBadges &&
                         <div className={styles.profileImgBadgesCard}>
-                            <div className={styles.profileImgBadges}>
-                                {
-                                    profileHasClaimed &&
-                                    <span
-                                        className={styles.tooltip}
-                                        data-text="Seek early supporter NFT owner."
-                                    >
-                                        <BorderIcon />
-                                    </span>
-                                }
-                                {
-                                    Boolean(findName) &&
-                                    <div className={styles.profileCardFindBadge}>
+                            {
+                                !hideFollow &&
+                                <div className={styles.profileImgBadges}>
+                                    {
+                                        profileHasClaimed &&
                                         <span
                                             className={styles.tooltip}
-                                            data-text=".find name owner."
+                                            data-text="Seek early supporter NFT owner."
                                         >
-                                            <FindIcon />
+                                            <BorderIcon />
                                         </span>
-                                    </div>
-                                }
-                                {
-                                    hasFlovatar &&
-                                    <div className={styles.profileCardFlovatarBadge}>
-                                        <span
-                                            className={styles.tooltip}
-                                            data-text="Flovatar NFT owner."
-                                        >
-                                            <FlovatarIcon />
-                                        </span>
-                                    </div>
-                                }
-                            </div>
+                                    }
+                                    {
+                                        Boolean(findName) &&
+                                        <div className={styles.profileCardFindBadge}>
+                                            <span
+                                                className={styles.tooltip}
+                                                data-text=".find name owner."
+                                            >
+                                                <FindIcon />
+                                            </span>
+                                        </div>
+                                    }
+                                    {
+                                        hasFlovatar &&
+                                        <div className={styles.profileCardFlovatarBadge}>
+                                            <span
+                                                className={styles.tooltip}
+                                                data-text="Flovatar NFT owner."
+                                            >
+                                                <FlovatarIcon />
+                                            </span>
+                                        </div>
+                                    }
+                                </div>
+                            }
+
                         </div>
                     }
                 </div>

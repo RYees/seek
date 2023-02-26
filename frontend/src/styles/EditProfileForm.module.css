@@ -26,7 +26,7 @@
 
 .editProfileFormStep {
     display: grid;
-    grid-template-columns: minmax(400px, 460px) 26px;
+    grid-template-columns: 1fr 26px;
     margin-bottom: 4rem;
 }
 
@@ -60,6 +60,10 @@
     .editProfileForm {
         grid-template-columns: 1fr minmax(300px, 320px);
         grid-gap: 4rem;
+    }
+
+    .editProfileFormStep {
+        grid-template-columns: minmax(400px, 460px) 26px;
     }
 
     .editProfileFormPreview {

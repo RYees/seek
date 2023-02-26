@@ -12,8 +12,8 @@
     border-radius: 0px 10px 10px 0px;
     color: var(--medium-gray);
     cursor: pointer;
-    height: 43px;
-    width: 43px;
+    height: 50px;
+    width: 50px;
 }
 
 .searchBarIcon svg {
@@ -23,6 +23,8 @@
 
 .searchBar input {
     border-radius: 10px 0px 0px 10px;
+    height: 50px;
+    padding: 0.5rem 1rem;
 }
 
 @media (min-width: 768px) {

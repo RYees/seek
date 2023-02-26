@@ -135,6 +135,10 @@
     display: none;
 }
 
+.navbarProfileInfoAddress {
+    color: var(--green);
+}
+
 @media (min-width: 768px) {
     .navbar {
         height: 100px;

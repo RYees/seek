@@ -164,7 +164,7 @@
     border: var(--border);
     width: 28px;
     height: 28px;
-    padding: 2px;
+    padding: 6px;
     margin-left: 0.25rem;
 }
 
@@ -173,7 +173,7 @@
 }
 
 .profileCardFlovatarBadge span svg {
-    padding: 4px 2px 4px 4px;
+    padding: 5px 2px 5px 5px;
 }
 
 .tooltip {

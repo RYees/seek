@@ -1,7 +1,7 @@
 .searchBar {
     display: flex;
     align-items: center;
-    margin-right: 10px;
+    margin: 0 1rem;
 }
 
 .searchBarIcon {
@@ -27,7 +27,7 @@
 
 @media (min-width: 768px) {
     .searchBar {
-        margin-right: 0rem;
+        margin: 0;
         padding-top: 2rem;
     }
 }

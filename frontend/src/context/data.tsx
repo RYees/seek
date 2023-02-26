@@ -57,8 +57,6 @@ export const DataProvider = ({ children }: { children: ReactNode }) => {
             "0xf4c99941cd3ae3d5",
             "0x886f3aeaf848c535",
             "0x92ba5cba77fc1e87",
-            "0xd9f8bdff66e451de",
-            "0x2a0eccae942667be"
         ];
     }, []);
 

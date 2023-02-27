@@ -9,6 +9,7 @@ import (
 
 	"github.com/SamixDev/seek/model"
 	"go.uber.org/zap"
+	"gorm.io/datatypes"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )
@@ -21,7 +22,7 @@ type fetchedThoughts []struct {
 		CreatorName interface{}   `json:"creatorName"`
 		Header      string        `json:"header"`
 		Message     string        `json:"message"`
-		Medias      []interface{} `json:"medias"`
+		Medias      []string      `json:"medias"`
 		Nfts        []interface{} `json:"nfts"`
 		Tags        []interface{} `json:"tags"`
 		QuoteOwner  interface{}   `json:"quoteOwner"`
@@ -87,6 +88,23 @@ func (s *Service) SyncThoughtsPublishedCron(ctx context.Context) {
 						thought.Message = event.BlockEventData.Message
 						thought.CreationDate = event.EventDate
 						thought.BlockHeight = uint64(event.BlockHeight)
+						medias := []string{}
+						if len(event.BlockEventData.Medias) != 0 {
+							for _, media := range event.BlockEventData.Medias {
+								//tags["tags"] = append(tags["tags"], tag.(string))
+								if media != "" {
+									medias = append(medias, media)
+								}
+							}
+							j, err := json.Marshal(medias)
+							if err != nil {
+								fmt.Printf("Error: %s", err.Error())
+							} else {
+								thought.Media = datatypes.JSON([]byte(string(j)))
+							}
+						} else {
+							thought.Media = datatypes.JSON([]byte("[]"))
+						}
 
 						if event.EventDate.Unix() > int64(maxEventDate) {
 							maxEventDate = uint64(event.EventDate.Unix())

@@ -5,6 +5,7 @@ import { IPostCard } from "@/types";
 import { parseURL, timeSince } from "@/helpers/functions";
 
 export default function PostsCard({ posts, title }: { posts: IPostCard[], title: string }) {
+
     return (
         <div className={styles.postsContainer}>
             <div className={styles.postCardTitle}>
@@ -36,7 +37,21 @@ export default function PostsCard({ posts, title }: { posts: IPostCard[], title:
                                 <div className={styles.postCardTime}>{timeSince(new Date(post.creation_date).getTime())}</div>
                             </div>
                             <div className={styles.postCardBody}>
-                                <div className={styles.postCardText}>{post?.message}</div>
+                                <div></div>
+                                <div>
+                                    <div className={styles.postCardText}>{post?.message}</div>
+                                    {
+                                        (post?.media && post?.media?.length > 0 && post?.media[0]) &&
+                                        <div className={styles.postCardMsgImg}>
+                                            <Image
+                                                src={`https://gateway.pinata.cloud/ipfs/${post.media[0]}`}
+                                                alt="post image"
+                                                width={400}
+                                                height={400}
+                                            />
+                                        </div>
+                                    }
+                                </div>
                             </div>
                         </div>
                     ))

@@ -20,7 +20,7 @@ export interface IActionsContext {
     unfollow: (address: string) => void;
     create: (name: string) => void;
     edit: (name: string, description: string, avatar: string) => void;
-    post: (message: string) => void;
+    post: (message: string, file: File | null, ipfsHash: string) => void;
     claim: () => void;
     setProfileTxStatus: (status: IProfileTxStatus) => void;
     setProfileTxTracker: (tx: IProfileTxTracker) => void;
@@ -72,6 +72,7 @@ export interface IPostCard {
     name: string;
     avatar: string;
     address: string;
+    media?: string[] | null;
 }
 
 export interface IUser {

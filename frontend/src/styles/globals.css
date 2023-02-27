@@ -101,7 +101,7 @@ h2 {
 }
 
 h3 {
-  font-size: 1.9rem;
+  font-size: 1.76rem;
   font-weight: 400;
 }
 
@@ -116,7 +116,8 @@ p {
   font-size: 1.5rem;
 }
 
-input {
+input,
+textarea {
   background-color: var(--black);
   border: var(--border);
   box-shadow: var(--shadow-in);
@@ -129,9 +130,10 @@ input {
   width: 100%;
   max-width: 430px;
   outline: none;
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 1rem;
 }
 
+textarea::placeholder,
 input::placeholder {
   color: var(--medium-gray);
   font-family: 'Nunito Sans', sans-serif;

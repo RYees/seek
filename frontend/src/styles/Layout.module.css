@@ -1,7 +1,7 @@
 .layoutWrapper {
     display: grid;
     grid-template-columns: 1fr;
-    max-width: 1480px;
+    max-width: 1280px;
     margin: 0 auto;
     padding: 1rem 1rem 6rem;
 }
@@ -38,6 +38,7 @@
     }
 
     .layoutMid {
+        max-width: 545px;
         padding-top: 2rem;
     }
 

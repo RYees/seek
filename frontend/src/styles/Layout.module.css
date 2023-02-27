@@ -8,10 +8,18 @@
 
 .layoutTop {
     display: none;
+    align-self: flex-start;
+    position: sticky;
+    top: 1rem;
+    z-index: 1;
 }
 
 .layoutBot {
     display: none;
+    align-self: flex-start;
+    position: sticky;
+    top: -1rem;
+    z-index: 0;
 }
 
 .layoutMessage {

@@ -1,25 +1,38 @@
 import styles from "@/styles/PostBtn.module.css";
 import { useContext } from "react";
 import { ActionsContext } from "@/context/actions";
+import { pinFileToIPFS } from "@/helpers/functions";
 
 export default function PostBtn(
     {
+        file,
         message,
-        setMessage
+        closeModal,
     }: {
+        file: File | null,
         message: string,
-        setMessage: (message: string) => void
+        closeModal: () => void,
     }
 ) {
     const { post } = useContext(ActionsContext);
 
-    const handlePost = () => {
-        if (!message) {
-            alert("Please enter a message.");
-            return;
+    const handlePost = async () => {
+        try {
+            if (!(message || file)) {
+                throw Error("Both message and file are empty.");
+            }
+
+            let ipfsHash = "";
+            if (file) {
+                ipfsHash = await pinFileToIPFS(file);
+            }
+
+            post(message, file, ipfsHash);
+            closeModal();
+        } catch (error) {
+            alert(error);
+            console.error(error);
         }
-        post(message);
-        setMessage("");
     }
 
     return (

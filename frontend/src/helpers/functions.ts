@@ -1,4 +1,9 @@
 import { IFPS_GATEWAY } from "@/helpers/constants";
+import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
+import FormData from "form-data";
+
+const JWT = process.env.NEXT_PUBLIC_PINATA_JWT || "";
 
 export const intlCompactNumFormat = function (
     num: number,
@@ -106,4 +111,47 @@ export const range = (start: number, end?: number, step: number = 1) => {
         output.push(i);
     }
     return output;
+};
+
+export const fileToBase64 = (file: File) => {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = (error) => reject(error);
+    });
+};
+
+export const pinFileToIPFS = async (file: File) => {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const fileId = uuidv4();
+    const metadata = JSON.stringify({
+        id: fileId,
+        name: `post-image-${fileId}`,
+    });
+    formData.append("pinataMetadata", metadata);
+
+    const options = JSON.stringify({
+        cidVersion: 0,
+    });
+    formData.append("pinataOptions", options);
+
+    try {
+        const res = await axios.post(
+            "https://api.pinata.cloud/pinning/pinFileToIPFS",
+            formData,
+            {
+                maxBodyLength: Number("Infinity"),
+                headers: {
+                    "Content-Type": `multipart/form-data;`,
+                    Authorization: `Bearer ${JWT}`,
+                },
+            }
+        );
+        return res.data.IpfsHash;
+    } catch (error) {
+        throw error;
+    }
 };

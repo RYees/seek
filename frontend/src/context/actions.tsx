@@ -269,7 +269,11 @@ export const ActionsProvider = ({ children }: { children: ReactNode }) => {
         }
     }
 
-    const post = async (message: string) => {
+    const post = async (
+        message: string,
+        file: File | null,
+        ipfsHash: string
+    ) => {
         if (!user?.loggedIn) {
             alert("Please connect wallet first.");
             return;
@@ -279,6 +283,9 @@ export const ActionsProvider = ({ children }: { children: ReactNode }) => {
             return;
         }
 
+        const mediaHash = ipfsHash || "";
+        const mediaType = file?.type || "text";
+
         try {
             const transactionID = await fcl.mutate({
                 cadence: `${PublishThought}`,
@@ -286,8 +293,8 @@ export const ActionsProvider = ({ children }: { children: ReactNode }) => {
                     arg("", types.String), // header
                     arg(message, types.String), // body
                     arg([], types.Array(types.String)), // tags
-                    arg("", types.String), // mediaHash
-                    arg("text", types.String), // mediaType
+                    arg(mediaHash, types.String), // mediaHash
+                    arg(mediaType, types.String), // mediaType
                     arg(null, types.Optional(types.Address)), // quoteNFTOwner
                     arg(null, types.Optional(types.String)), // quoteNFTType
                     arg(null, types.Optional(types.UInt64)), // quoteNFTId

@@ -68,10 +68,40 @@
     color: var(--light-gray);
     font-size: 1.1rem;
     font-weight: 300;
+    max-width: 400px;
 }
 
 .postCardEmpty {
     color: var(--medium-gray);
     font-size: 1.2rem;
     margin-top: 2rem;
+}
+
+.postCardMsgImg {
+    background-color: var(--black);
+    border: var(--border);
+    border-radius: 10px;
+    max-width: 400px;
+    height: 400px;
+    margin-top: 1rem;
+    overflow: hidden;
+}
+
+.postCardMsgImg img {
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (min-width: 568px) {
+    .postCardHead {
+        grid-template-columns: 56px minmax(360px, 1fr) 24px;
+    }
+
+    .postCardBody {
+        display: grid;
+        grid-template-columns: 56px minmax(360px, 1fr);
+        grid-gap: 1rem;
+    }
 }
